@@ -5,8 +5,8 @@ require_once('../config.php');
 	<a href="/" class="navbar-brand"><h1><?= TITLE ?></h1></a>
 	<div class="text-end">
 		<a href="" class="nav-item p-2"><img src="assets/icons/person-fill.svg" alt="Profile utente" /></a>
-		<a href="" class="nav-item p-2"><img src="assets/icons/cart4.svg" alt="Carrello" /></a>
-		<a href="" class="nav-item p-2"><img src="assets/icons/three-dots-vertical.svg" alt="menu" /></a>
+		<a href="/cart.php" class="nav-item p-2"><img src="assets/icons/cart4.svg" alt="Carrello" /></a>
+		<a href="" class="nav-item p-2"><img src="assets/icons/three-dots-vertical.svg" alt="Menu" /></a>
 	</div>
 	<form class="col-12 input-group">
 		<input type="search" class="form-control" name="q" placeholder="Cerca" title="Cerca" />
