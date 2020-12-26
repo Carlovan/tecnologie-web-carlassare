@@ -1,13 +1,16 @@
 <?php
 
-require 'types/product.php';
+require_once('types/product.php');
 
 class Database {
-	function allProducts() {
-		$result = [];
+	private $products;
+
+	function __construct() {
+		$this->products = [];
 		$seller = new Seller();
 		$seller->name = "Giorgetti SRL";
 		$seller->description = "dal 1234";
+		$category = array("Cose", "Cose belle", "Rarità");
 		for ($i = 0; $i < 10; $i++) {
 			$newProd = new Product();
 			$newProd->id = $i;
@@ -16,10 +19,18 @@ class Database {
 			$newProd->description = "Questo è un prodotto magnifico";
 			$newProd->seller = $seller;
 			$newProd->imagePath = "http://liquoricemage.it/bobby.jpg";
+			$newProd->category = $category;
 
-			$result[] = $newProd;
+			$this->products[] = $newProd;
 		}
-		return $result;
+	}
+
+	function allProducts() {
+		return $this->products;
+	}
+
+	function getProduct($id) {
+		return $this->products[$id];
 	}
 }
 
