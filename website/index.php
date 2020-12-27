@@ -1,7 +1,8 @@
 <?php
-require_once('../backend/database.php');
-require_once('../fragments/page_delimiters.php');
-require_once('../fragments/product_list.php');
+require_once('../config.php');
+require_once(BACKEND_D . 'database.php');
+require_once(FRAGS_D . 'page_delimiters.php');
+require_once(FRAGS_D . 'product_list.php');
 
 $database = new Database();
 

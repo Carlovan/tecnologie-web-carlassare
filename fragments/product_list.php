@@ -27,7 +27,7 @@ function productListCart($products) {
 					</div>
 					<div class="d-flex align-items-center align-items-end">
 						<label for="quantity">Quantità: </label>
-						<input id="quantity" name="quantity" type="number" class="form-control w-50 ms-2" value="<?= $p->quantity ?>"/>
+						<input id="quantity" name="quantity" type="number" min=1 inputmode="decimal" class="form-control w-25 ms-2 p-0 arrows-none text-center" value="<?= $p->quantity ?>"/>
 						<button aria-label="Rimuovi" class="ms-auto border-0 bg-transparent p-0"><i class="bi bi-trash text-danger"></i></button>
 					</div>
 					<div class="d-flex align-items-center">

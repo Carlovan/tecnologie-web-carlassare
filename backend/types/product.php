@@ -1,6 +1,6 @@
 <?php
 
-require_once('seller.php');
+require_once(BACKEND_D . 'types/seller.php');
 
 class Product {
 	public $id;

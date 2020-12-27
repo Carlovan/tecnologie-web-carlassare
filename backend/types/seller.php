@@ -1,13 +1,12 @@
 <?php
-
-require_once('user.php');
+require_once(BACKEND_D . 'types/user.php');
 
 class Seller {
-	public $name;
-	public $description;
-	public $imagePath;
-	public $website;
-	public $user;
+	public $name; // string
+	public $description; // string
+	public $imagePath; // string
+	public $website; // string?
+	public $user; // User
 
 	function __construct() {}
 }
