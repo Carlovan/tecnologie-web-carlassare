@@ -10,12 +10,12 @@ class Database {
 		$this->seller = new Seller();
 		$this->seller->name = "Giorgetti SRL";
 		$this->seller->description = "Lorem ipsum dolor sit amet, consectetur adipiscing elit. Proin vehicula ante risus. Praesent quis aliquam nisi, sed egestas massa. Aliquam erat volutpat. Donec ornare ac magna ut molestie. Pellentesque at accumsan elit, vel interdum mauris. Integer vitae ligula id dolor commodo bibendum. Ut eu molestie mauris, nec posuere est. Donec purus lorem, elementum at mollis eu, vehicula vitae neque. ";
-		$this->seller->imagePath = "http://liquoricemage.it/bobby.jpg";
+		$this->seller->imagePath = "/assets/images/bobby.jpg";
 		$this->seller->website = "https://liquoricemage.it";
 
 		$this->products = [];
 
-		$this->category = array("Cose", "Cose belle", "Rarità");
+		$category = array("Cose", "Cose belle", "Rarità");
 		for ($i = 0; $i < 10; $i++) {
 			$newProd = new Product();
 			$newProd->id = $i;
@@ -25,7 +25,7 @@ class Database {
 
 Fusce id arcu justo. Aliquam lacinia imperdiet orci, ut bibendum lectus imperdiet ac. Quisque eros enim, sagittis nec ullamcorper nec, pharetra non nulla. Vivamus gravida tempus consequat. Vestibulum mattis scelerisque elit, ut aliquet est malesuada nec. Curabitur molestie metus at tellus blandit, dictum luctus quam ultrices. Maecenas vitae dui ac neque tincidunt cursus non a felis. Curabitur in facilisis nisi, id ullamcorper orci. Proin in est a lectus maximus pretium. Cras malesuada nisl id dolor suscipit, vitae suscipit ipsum faucibus. ";
 			$newProd->seller = $this->seller;
-			$newProd->imagePath = "http://liquoricemage.it/bobby.jpg";
+			$newProd->imagePath = "/assets/images/bobby.jpg";
 			$newProd->category = $category;
 
 			$this->products[] = $newProd;
