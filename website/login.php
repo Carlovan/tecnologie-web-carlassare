@@ -10,12 +10,12 @@ require(FRAGS_D . 'nav.php');
 			<h1>Effettua l'accesso</h1>
 		</header>
 		<section class="mt-4">
-			<form action="do_login.php" class="w-75 m-auto">
+			<form action="/api/login.php" method="POST" class="w-75 m-auto">
 				<label for="email" class="form-label">Email:</label>
-				<input id="email" name="email" type="text" class="form-control" />
+				<input id="email" name="email" type="email" required class="form-control" />
 				<label for="password" class="form-label mt-4">Password:</label>
 				<div class="input-group mb-4">
-					<input id="password" name="password" type="password" class="form-control" />
+					<input id="password" name="password" type="password" required class="form-control" />
 					<input type="checkbox" class="btn-check" id="show_pass" autocomplete="off" onchange="showPassword(this.checked);" />
 					<label id="show_pass_label" class="btn btn-outline-primary" for="show_pass" aria-label="Mostra password"><i class="bi bi-eye-fill"></i></label>
 				</div>
