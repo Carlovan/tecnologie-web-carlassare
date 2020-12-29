@@ -2,11 +2,18 @@
 require_once(BACKEND_D . 'types/product.php');
 require_once(BACKEND_D . 'types/seller.php');
 
+/* require_once(BACKEND_D . 'database/products.php'); */
+require_once(BACKEND_D . 'database/users.php');
+
 class Database {
-	private $products;
+	public $products;
 	private $seller;
+	public $users;
 
 	function __construct() {
+		$this->users = new UsersDatabase();
+		/* $this->products = new ProductsDatabase(); */
+
 		$this->seller = new Seller();
 		$this->seller->name = "Giorgetti SRL";
 		$this->seller->description = "Lorem ipsum dolor sit amet, consectetur adipiscing elit. Proin vehicula ante risus. Praesent quis aliquam nisi, sed egestas massa. Aliquam erat volutpat. Donec ornare ac magna ut molestie. Pellentesque at accumsan elit, vel interdum mauris. Integer vitae ligula id dolor commodo bibendum. Ut eu molestie mauris, nec posuere est. Donec purus lorem, elementum at mollis eu, vehicula vitae neque. ";
