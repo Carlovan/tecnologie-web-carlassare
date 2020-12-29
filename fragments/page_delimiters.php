@@ -1,5 +1,4 @@
 <?php
-require_once('../config.php');
 
 function page_end() { ?>
 	</body>

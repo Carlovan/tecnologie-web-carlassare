@@ -7,7 +7,7 @@ require_once(FRAGS_D . 'product_list.php');
 $database = new Database();
 
 page_start('Pagina principale');
-require('../fragments/nav.php');
+require(FRAGS_D . 'nav.php');
 ?>
 	<main class="container mt-nav">
 		<section class="row g-0 justify-content-center">

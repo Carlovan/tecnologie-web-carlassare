@@ -11,5 +11,9 @@ class User {
 	public $passwordHash; // string
 	public $name; // string
 	public $shippingAddress; // Address
+
+	function isSeller() {
+		return false;
+	}
 }
 ?>
