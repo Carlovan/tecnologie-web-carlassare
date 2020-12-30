@@ -3,10 +3,32 @@ require_once('../../../config.php');
 require_once(BACKEND_D . 'database.php');
 require_once(FRAGS_D . 'page_delimiters.php');
 
+session_start();
+
 page_start('Aggiungi prodotto');
 require(FRAGS_D . 'nav.php');
 ?>
-	<main class="mt-nav container">
+
+<div class="mt-nav"></div> <!-- Utile per aggiungere il margine iniziale -->
+
+<?php
+if (isset($_SESSION['err'])) { ?>
+	<div class="alert alert-danger mx-3" role="alert">
+		<b>Si è verificato un errore: </b><?= $_SESSION['err'] ?>
+	</div>
+<?php
+	unset($_SESSION['err']);
+}
+
+if (isset($_SESSION['info'])) { ?>
+	<div class="alert alert-success mx-3" role="alert">
+		<?= $_SESSION['info'] ?>
+	</div>
+<?php
+	unset($_SESSION['info']);
+}
+?>
+	<main class="container">
 		<header>
 			<h1>Aggiungi prodotto</h1>
 		</header>

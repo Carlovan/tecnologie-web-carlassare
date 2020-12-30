@@ -17,6 +17,10 @@ class Product {
 	function formatPrice() {
 		return number_format($this->priceInCents / 100, 2, '.', '');
 	}
+
+	function createImageBaseName() {
+		return 'product-' . $this->id;
+	}
 }
 
 ?>

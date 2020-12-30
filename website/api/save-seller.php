@@ -13,6 +13,9 @@ $name = trim($_POST['name']);
 $description = trim($_POST['description']);
 $website = trim($_POST['website']);
 
+$imageField = 'profilePic';
+$hasImage = isFileUploaded($imageField);
+
 try {
 	$seller = $database->sellers->byUserId($user->id);
 	if (is_null($seller)) {
@@ -26,6 +29,10 @@ try {
 
 	if (!empty($website) && filter_var($website, FILTER_VALIDATE_URL) === false) {
 		throw new Exception("L'indirizzo web specificato non è valido");
+	}
+
+	if ($hasImage) {
+		$seller->imagePath = getUploadedImage($imageField, $seller->createImageBaseName());
 	}
 
 	$seller->name = $name;

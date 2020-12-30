@@ -15,6 +15,8 @@ $price = floatval(trim($_POST['price']));
 $quantity = intval(trim($_POST['quantity']));
 $category = trim($_POST['category']);
 
+$imageField = "picture";
+
 try {
 	if (is_null($database->sellers->byUserId($user->id))) {
 		throw new Exception("Non esiste un venditore associato a questo utente");
@@ -36,6 +38,10 @@ try {
 		throw new Exception("La quantità non può essere negativa");
 	}
 
+	if (!isFileUploaded($imageField)) {
+		throw new Exception("È necessario fornire un'immagine");
+	}
+
 	$product = new Product();
 	$product->name = $name;
 	$product->description = $description;
@@ -45,11 +51,14 @@ try {
 	$product->sellerId = $user->id;
 	$product->category = explode(' > ', $category);
 
-	$database->products->add($product);
+	$product->id = $database->products->add($product);
+	$product->imagePath = getUploadedImage($imageField, $product->createImageBaseName());
+	$database->products->update($product);
 	$_SESSION['info'] = 'Prodotto creato correttamente';
+	redirect('/profile/seller.php');
 } catch (Exception $e) {
 	$_SESSION['err'] = $e->getMessage();
+	redirect('/profile/seller/new-product.php');
 }
 
-redirect('/profile/seller.php');
 ?>

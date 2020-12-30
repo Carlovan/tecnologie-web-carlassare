@@ -7,6 +7,12 @@ class Seller {
 	public $imagePath; // string
 	public $website; // string?
 	public $userId; // string
+
+	// Generates the name of the profile picture,
+	// without path and extension
+	function createImageBaseName() {
+		return 'seller-' . $this->userId;
+	}
 }
 
 ?>

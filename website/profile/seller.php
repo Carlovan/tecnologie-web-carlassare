@@ -14,7 +14,7 @@ $seller = $database->sellers->byUserId($user->id);
 $isSeller = !is_null($seller);
 
 $products = array();
-if (isSeller) {
+if ($isSeller) {
 	$products = $database->products->bySellerId($seller->userId);
 }
 
@@ -46,9 +46,14 @@ if (isset($_SESSION['info'])) { ?>
 			<h1>Profilo venditore per <?= $user->name ?></h1>
 		</header>
 		<section class="mt-4 row g-0">
-			<form method="POST" class="col-10 m-auto">
+			<form method="POST" enctype="multipart/form-data" class="col-10 m-auto">
+				<?php if ($isSeller) { ?>
+				<div class="text-center">
+					<img src="<?= $seller->imagePath ?>" alt="Immagine venditore" class="w-50 img-thumbnail" />
+				</div>
+				<?php } ?>
 				<label for="profilePic" class="form-label">Immagine di profilo:</label>
-				<input id="profilePic" name="profilePic" type="file" accept="image/*" class="form-control" />
+				<input id="profilePic" name="profilePic" type="file" <?php if (!$isSeller) { ?> required <?php } ?> accept="image/*" class="form-control" />
 				<label for="name" class="form-label mt-2">Nome venditore:</label>
 				<input id="name" name="name" type="text" required class="form-control" value="<?= $seller->name ?>"/>
 				<label for="description" class="form-label mt-2">Descrizione:</label>

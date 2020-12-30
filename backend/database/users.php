@@ -46,6 +46,7 @@ class UsersDatabase {
 		}
 		$this->users[] = $user;
 		$this->saveData();
+		return $user->id;
 	}
 
 	function update($user) {
