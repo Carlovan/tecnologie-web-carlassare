@@ -11,3 +11,11 @@ function loggedUser($database) {
 	}
 	return $database->users->get($_SESSION['userid']);
 }
+
+function loggedUserOrRedirect($database, $redirect = '/login.php') {
+	$user = loggedUser($database);
+	if (is_null($user)) {
+		redirect($redirect);
+	}
+	return $user;
+}

@@ -7,11 +7,7 @@ require_once(BACKEND_D . 'database.php');
 session_start();
 
 $database = new Database();
-$user = loggedUser($database);
-
-if (is_null($user)) {
-	redirect('/login.php');
-}
+$user = loggedUserOrRedirect($database);
 
 page_start('Profilo');
 require(FRAGS_D . 'nav.php');

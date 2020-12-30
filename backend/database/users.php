@@ -46,7 +46,19 @@ class UsersDatabase {
 		}
 		$this->users[] = $user;
 		$this->saveData();
-		return true;
+	}
+
+	function update($user) {
+		$this->loadData();
+
+		foreach ($this->users as $k => $u) {
+			if ($u->id === $user->id) {
+				$this->users[$k] = $user;
+				break;
+			}
+		}
+
+		$this->saveData();
 	}
 }
 

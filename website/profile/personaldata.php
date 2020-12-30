@@ -7,34 +7,50 @@ require_once(BACKEND_D . 'database.php');
 session_start();
 
 $database = new Database();
-$user = loggedUser($database);
-
-if (is_null($user)) {
-	redirect('/login.php');
-}
+$user = loggedUserOrRedirect($database);
 
 page_start('Dati personali');
 require(FRAGS_D . 'nav.php');
 ?>
-	<main class="container mt-nav">
+
+<div class="mt-nav"></div> <!-- Utile per aggiungere il margine iniziale -->
+
+<?php
+if (isset($_SESSION['err'])) { ?>
+	<div class="alert alert-danger mx-3" role="alert">
+		<b>Si è verificato un errore: </b><?= $_SESSION['err'] ?>
+	</div>
+<?php
+	unset($_SESSION['err']);
+}
+
+if (isset($_SESSION['info'])) { ?>
+	<div class="alert alert-success mx-3" role="alert">
+		<?= $_SESSION['info'] ?>
+	</div>
+<?php
+	unset($_SESSION['info']);
+}
+?>
+	<main class="container">
 		<header>
 			<h1>Dati personali di <?= $user->name ?></h1>
 		</header>
 		<section class="mt-4 row g-0">
-			<form action="/api/save_personal_data.php" method="POST" class="col-10 m-auto">
+			<form action="/api/save-personal-data.php" method="POST" class="col-10 m-auto">
 				<label for="name" class="form-label">Nome e cognome:</label>
 				<input id="name" name="name" type="text" required class="form-control" value="<?= $user->name ?>"/>
 				<label for="email" class="form-label mt-2">Email:</label>
 				<input id="email" name="email" type="email" required class="form-control" value="<?= $user->email ?>"/>
 				<label for="old-password" class="form-label mt-2">Password attuale:</label>
 				<div class="input-group">
-					<input id="old-password" name="old-password" type="password" minlength="8" pattern="/^(?=.*[a-z])(?=.*[A-Z])(?=.*\d)[a-zA-Z\d]{8,}/" class="form-control" />
+					<input id="old-password" name="old-password" type="password" minlength="8" pattern="^(?=.*[a-z])(?=.*[A-Z])(?=.*\d)[a-zA-Z\d]{8,}" class="form-control" />
 					<input type="checkbox" class="btn-check" id="show-old-password" autocomplete="off" onchange="showPassword('old-password', this.checked);" />
 					<label id="show-old-password-label" class="btn btn-outline-primary" for="show-old-password" aria-label="Mostra password"><i class="bi bi-eye-fill"></i></label>
 				</div>
 				<label for="new-password" class="form-label mt-2">Nuova password:</label>
 				<div class="input-group">
-					<input id="new-password" name="new-password" type="password" minlength="8" pattern="/^(?=.*[a-z])(?=.*[A-Z])(?=.*\d)[a-zA-Z\d]{8,}/" aria-describedby="passwordHelpBlock" class="form-control" />
+					<input id="new-password" name="new-password" type="password" minlength="8" pattern="^(?=.*[a-z])(?=.*[A-Z])(?=.*\d)[a-zA-Z\d]{8,}" aria-describedby="passwordHelpBlock" class="form-control" />
 					<input type="checkbox" class="btn-check" id="show-new-password" autocomplete="off" onchange="showPassword('new-password', this.checked);" />
 					<label id="show-new-password-label" class="btn btn-outline-primary" for="show-new-password" aria-label="Mostra password"><i class="bi bi-eye-fill"></i></label>
 				</div>
