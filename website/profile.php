@@ -1,10 +1,17 @@
 <?php
 require_once('../config.php');
+require_once(MAIN_DIR . 'utils.php');
 require_once(FRAGS_D . 'page_delimiters.php');
-require_once(BACKEND_D . 'types/user.php');
+require_once(BACKEND_D . 'database.php');
 
-$user = new User();
-$user->name = "{nome}";
+session_start();
+
+$database = new Database();
+$user = loggedUser($database);
+
+if (is_null($user)) {
+	redirect('/login.php');
+}
 
 page_start('Profilo');
 require(FRAGS_D . 'nav.php');
@@ -46,6 +53,13 @@ require(FRAGS_D . 'nav.php');
 				<a href="/profile/seller.php" class="card text-decoration-none text-reset">
 					<div class="card-body d-flex justify-content-center fw-bold">
 						<i class="bi bi-shop text-info lh-sm"></i><div class="col-5 text-center">Profilo venditore</div>
+					</div>
+				</a>
+			</div>
+			<div class="col-12 mb-3">
+				<a href="/api/auth/logout.php" class="card text-decoration-none text-reset">
+					<div class="card-body d-flex justify-content-center fw-bold">
+						<i class="bi bi-box-arrow-left text-danger lh-sm"></i><div class="col-5 text-center">Disconnettiti</div>
 					</div>
 				</a>
 			</div>

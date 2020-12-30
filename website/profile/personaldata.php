@@ -1,10 +1,17 @@
 <?php
 require_once('../../config.php');
+require_once(MAIN_DIR . 'utils.php');
 require_once(FRAGS_D . 'page_delimiters.php');
-require_once(BACKEND_D . 'types/user.php');
+require_once(BACKEND_D . 'database.php');
 
-$user = new User();
-$user->name = "{nome}";
+session_start();
+
+$database = new Database();
+$user = loggedUser($database);
+
+if (is_null($user)) {
+	redirect('/login.php');
+}
 
 page_start('Dati personali');
 require(FRAGS_D . 'nav.php');
@@ -15,8 +22,6 @@ require(FRAGS_D . 'nav.php');
 		</header>
 		<section class="mt-4 row g-0">
 			<form action="/api/save_personal_data.php" method="POST" class="col-10 m-auto">
-				<label for="profilePic" class="form-label">Immagine di profilo:</label>
-				<input id="profilePic" name="profilePic" type="file" accept="image/*" class="form-control" />
 				<label for="name" class="form-label">Nome e cognome:</label>
 				<input id="name" name="name" type="text" required class="form-control" value="<?= $user->name ?>"/>
 				<label for="email" class="form-label mt-2">Email:</label>

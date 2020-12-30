@@ -8,9 +8,13 @@ $database = new Database();
 $authController = new AuthController($database);
 
 try {
-	$authController->register($_POST['name'], $_POST['email'], $_POST['password'], $_POST['address'], $_POST['city'], $_POST['zipCode']); 
-	redirect('/login.php');
+	$user = $authController->login($_POST['email'], $_POST['password']);
+	session_start();
+	$_SESSION["userid"] = $user->id;
+
+	redirect('/profile.php');
 } catch (Exception $e) {
-	redirect('/register.php?err=' . urlencode($e->getMessage()));
+	redirect('/login.php?err=' . urlencode($e->getMessage()));
 }
+
 ?>

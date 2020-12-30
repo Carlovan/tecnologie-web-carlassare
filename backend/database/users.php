@@ -2,7 +2,7 @@
 
 class UsersDatabase {
 	private $users = NULL;
-	private $filename = 'users.db';
+	private $filename = DB_D . 'users.db';
 
 	private function loadData() {
 		if (is_null($this->users)) {
@@ -17,14 +17,26 @@ class UsersDatabase {
 		file_put_contents($this->filename, serialize($this->users));
 	}
 
+	function get($id) {
+		$this->loadData();
+
+		foreach ($this->users as $user) {
+			if ($user->id === $id) {
+				return $user;
+			}
+		}
+		return NULL;
+	}
+
 	function byEmail($email) {
 		$this->loadData();
 
-		$users = array_filter($this->users, function($u) { return $u->email == $email; });
-		if (count($users) === 0) {
-			return NULL;
+		foreach ($this->users as $user) {
+			if ($user->email === $email) {
+				return $user;
+			}
 		}
-		return $users[0];
+		return NULL;
 	}
 
 	function add($user) {
@@ -34,6 +46,7 @@ class UsersDatabase {
 		}
 		$this->users[] = $user;
 		$this->saveData();
+		return true;
 	}
 }
 

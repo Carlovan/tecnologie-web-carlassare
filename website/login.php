@@ -5,12 +5,26 @@ require_once(FRAGS_D . 'page_delimiters.php');
 page_start('Login');
 require(FRAGS_D . 'nav.php');
 ?>
-	<main class="mt-nav container">
+
+<div class="mt-nav"></div> <!-- Utile per aggiungere il margine iniziale -->
+
+<?php
+if (isset($_GET['err'])) { ?>
+	<div class="alert alert-danger mx-3" role="alert">
+		<b>Si è verificato un errore: </b><?= $_GET['err'] ?>
+	</div>
+<?php
+}
+?>
+	<main class="container">
 		<header>
 			<h1>Effettua l'accesso</h1>
 		</header>
+		<section class="mt-2">
+			<a href="/register.php">Non hai ancora un account? Registrati!</a>
+		</section>
 		<section class="mt-4">
-			<form action="/api/login.php" method="POST" class="w-75 m-auto">
+			<form action="/api/auth/login.php" method="POST" class="w-75 m-auto">
 				<label for="email" class="form-label">Email:</label>
 				<input id="email" name="email" type="email" required class="form-control" />
 				<label for="password" class="form-label mt-4">Password:</label>

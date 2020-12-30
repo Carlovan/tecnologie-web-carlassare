@@ -54,16 +54,19 @@ class AuthController {
 		$user->shippingAddress->zipCode = $zipCode;
 
 		$this->database->users->add($user);
-		return true;
 	}
 
 	function login($email, $password) {
 		$user = $this->database->users->byEmail($email);
+		$error = new InvalidArgumentException("Email o password errati");
 		if (is_null($user)) {
-			return false;
+			throw $error;
 		}
 
-		return password_verify($password, $user->passwordHash);
+		if (!password_verify($password, $user->passwordHash)) {
+			throw $error;
+		}
+		return $user;
 	}
 }
 

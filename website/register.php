@@ -5,7 +5,18 @@ require_once(FRAGS_D . 'page_delimiters.php');
 page_start('Registrazione');
 require(FRAGS_D . 'nav.php');
 ?>
-	<main class="mt-nav container">
+
+<div class="mt-nav"></div> <!-- Utile per aggiungere il margine iniziale -->
+
+<?php
+if (isset($_GET['err'])) { ?>
+	<div class="alert alert-danger mx-3" role="alert">
+		<b>Si è verificato un errore: </b><?= $_GET['err'] ?>
+	</div>
+<?php
+}
+?>
+	<main class="container">
 		<header>
 			<h1>Registrati</h1>
 		</header>
