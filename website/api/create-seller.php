@@ -17,7 +17,7 @@ try {
 	if (!is_null($database->sellers->byUserId($user->id))) {
 		throw new Exception("Esiste già un venditore associato a questo utente");
 	}
-	if (!is_null($database->sellers->byName($name)) {
+	if (!is_null($database->sellers->byName($name))) {
 		throw new Exception("Questo nome è già utilizzato da un altro venditore");
 	}
 

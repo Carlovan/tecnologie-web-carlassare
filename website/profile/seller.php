@@ -13,7 +13,10 @@ $user = loggedUserOrRedirect($database);
 $seller = $database->sellers->byUserId($user->id);
 $isSeller = !is_null($seller);
 
-$products = $database->allProducts();
+$products = array();
+if (isSeller) {
+	$products = $database->products->bySellerId($seller->userId);
+}
 
 page_start('Profilo Venditore');
 require(FRAGS_D . 'nav.php');
@@ -66,10 +69,11 @@ if (isset($_SESSION['info'])) { ?>
 			<form id="form-remove" action="/api/remove-seller.php" method="GET"></form>
 		</section>
 <?php
-if (isSeller) {
+if ($isSeller) {
 ?>
 		<hr />
 		<section class="row g-0 justify-content-center">
+			<a href="seller/new-product.php" role="button" class="col-6 btn btn-success">Aggiungi prodotto</a>
 			<?php productListSeller($products); ?>
 		</section>
 	</main>

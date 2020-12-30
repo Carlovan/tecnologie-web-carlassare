@@ -3,15 +3,15 @@
 require_once(BACKEND_D . 'types/seller.php');
 
 class Product {
-	public $id;
+	public $id; // string
 	public $name; // string
 	public $description; // string
 	public $priceInCents; // int
 	public $imagePath; // string
-	public $insertDate; // Date
+	public $insertDateTime; // int (Unix)
 	public $quantity; // int
-	public $soldCount; // int
-	public $seller; // Seller
+	public $soldCount = 0; // int
+	public $sellerId; // Seller
 	public $category; // array[string]
 
 	function formatPrice() {
