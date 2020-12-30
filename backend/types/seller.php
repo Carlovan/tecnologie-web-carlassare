@@ -6,9 +6,7 @@ class Seller {
 	public $description; // string
 	public $imagePath; // string
 	public $website; // string?
-	public $user; // User
-
-	function __construct() {}
+	public $userId; // string
 }
 
 ?>
