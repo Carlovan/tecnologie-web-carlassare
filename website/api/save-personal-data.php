@@ -10,10 +10,10 @@ $database = new Database();
 $usersController = new UsersController();
 $user = loggedUserOrRedirect($database);
 
-$email = $_POST['email'];
-$name = $_POST['name'];
-$newPassword = $_POST['new-password'];
-$oldPassword = $_POST['old-password'];
+$email = trim($_POST['email']);
+$name = trim($_POST['name']);
+$newPassword = trim($_POST['new-password']);
+$oldPassword = trim($_POST['old-password']);
 
 try {
 	$usersController->validateData($name, $email);

@@ -7,8 +7,15 @@ require_once(BACKEND_D . 'controllers/auth.php');
 $database = new Database();
 $authController = new AuthController($database);
 
+$name = trim($_POST['name']);
+$email = trim($_POST['email']);
+$password = trim($_POST['password']);
+$address = trim($_POST['address']);
+$city = trim($_POST['city']);
+$zipCode = trim($_POST['zipCode']);
+
 try {
-	$authController->register($_POST['name'], $_POST['email'], $_POST['password'], $_POST['address'], $_POST['city'], $_POST['zipCode']); 
+	$authController->register($name, $email, $password, $address, $city, $zipCode); 
 	redirect('/login.php');
 } catch (Exception $e) {
 	redirect('/register.php?err=' . urlencode($e->getMessage()));

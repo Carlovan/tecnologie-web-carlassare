@@ -7,8 +7,11 @@ require_once(BACKEND_D . 'controllers/auth.php');
 $database = new Database();
 $authController = new AuthController($database);
 
+$email = trim($_POST['email']);
+$password = trim($_POST['password']);
+
 try {
-	$user = $authController->login($_POST['email'], $_POST['password']);
+	$user = $authController->login($email, $password);
 	session_start();
 	$_SESSION["userid"] = $user->id;
 

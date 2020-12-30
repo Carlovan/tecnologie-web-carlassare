@@ -10,9 +10,9 @@ $database = new Database();
 $usersController = new UsersController();
 $user = loggedUserOrRedirect($database);
 
-$streetAndNumber = $_POST['address'];
-$city = $_POST['city'];
-$zipCode = $_POST['zipCode'];
+$streetAndNumber = trim($_POST['address']);
+$city = trim($_POST['city']);
+$zipCode = trim($_POST['zipCode']);
 
 try {
 	$usersController->validateAddress($streetAndNumber, $city, $zipCode);
