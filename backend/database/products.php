@@ -51,6 +51,16 @@ class ProductsDatabase {
 		}
 		$this->saveData();
 	}
+
+	function remove($id) {
+		$this->loadData();
+		foreach ($this->products as $k => $p) {
+			if ($p->id === $id) {
+				unset($this->products[$k]);
+			}
+		}
+		$this->saveData();
+	}
 }
 
 ?>

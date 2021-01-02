@@ -12,28 +12,14 @@ require(FRAGS_D . 'nav.php');
 <div class="mt-nav"></div> <!-- Utile per aggiungere il margine iniziale -->
 
 <?php
-if (isset($_SESSION['err'])) { ?>
-	<div class="alert alert-danger mx-3" role="alert">
-		<b>Si è verificato un errore: </b><?= $_SESSION['err'] ?>
-	</div>
-<?php
-	unset($_SESSION['err']);
-}
-
-if (isset($_SESSION['info'])) { ?>
-	<div class="alert alert-success mx-3" role="alert">
-		<?= $_SESSION['info'] ?>
-	</div>
-<?php
-	unset($_SESSION['info']);
-}
+require(FRAGS_D . 'messages.php');
 ?>
 	<main class="container">
 		<header>
 			<h1>Aggiungi prodotto</h1>
 		</header>
 		<section class="mt-4">
-			<form action="/api/create-product.php" method="POST" class="col-10 m-auto">
+			<form action="/api/create-product.php" method="POST" enctype="multipart/form-data" class="col-10 m-auto">
 				<label for="picture" class="form-label">Immagine:</label>
 				<input id="picture" name="picture" type="file" accept="image/*" class="form-control" />
 				<label for="name" class="form-label mt-2">Nome:</label>

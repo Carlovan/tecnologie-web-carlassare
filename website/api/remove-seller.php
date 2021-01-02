@@ -15,7 +15,10 @@ try {
 		throw new Exception("Nessun venditore è associato a questo utente");
 	}
 
-	// TODO remove all products
+	$products = $database->products->bySellerId($seller->userId);
+	foreach ($products as $p) {
+		$database->products->remove($p->id);
+	}
 
 	$database->sellers->remove($seller);
 	$_SESSION['info'] = 'Profilo venditore rimosso correttamente';

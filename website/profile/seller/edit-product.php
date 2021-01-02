@@ -26,7 +26,7 @@ require(FRAGS_D . 'nav.php');
 			<h1>Modifica prodotto</h1>
 		</header>
 		<section class="mt-4">
-			<form action="/api/editProduct.php" method="POST" class="col-10 m-auto">
+			<form action="/api/save-product.php" method="POST" enctype="multipart/form-data" class="col-10 m-auto">
 				<div class="text-center">
 					<img src="<?= $product->imagePath ?>" alt="Immagine prodotto" class="w-50 img-thumbnail" />
 				</div>
@@ -52,6 +52,7 @@ require(FRAGS_D . 'nav.php');
 				<div class="text-center my-3">
 					<input type="submit" class="btn btn-success w-50 m-auto" value="Salva" />
 				</div>
+				<input type="hidden" name="productId" value="<?= $product->id ?>" />
 			</form>
 		</section>
 	</main>

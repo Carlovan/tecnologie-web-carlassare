@@ -9,12 +9,7 @@ require(FRAGS_D . 'nav.php');
 <div class="mt-nav"></div> <!-- Utile per aggiungere il margine iniziale -->
 
 <?php
-if (isset($_GET['err'])) { ?>
-	<div class="alert alert-danger mx-3" role="alert">
-		<b>Si è verificato un errore: </b><?= $_GET['err'] ?>
-	</div>
-<?php
-}
+require(FRAGS_D . 'messages.php');
 ?>
 	<main class="container">
 		<header>
