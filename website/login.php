@@ -2,6 +2,8 @@
 require_once('../config.php');
 require_once(FRAGS_D . 'page_delimiters.php');
 
+session_start();
+
 page_start('Login');
 require(FRAGS_D . 'nav.php');
 ?>

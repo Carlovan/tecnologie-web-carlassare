@@ -14,10 +14,13 @@ $address = trim($_POST['address']);
 $city = trim($_POST['city']);
 $zipCode = trim($_POST['zipCode']);
 
+session_start();
+
 try {
 	$authController->register($name, $email, $password, $address, $city, $zipCode); 
 	redirect('/login.php');
 } catch (Exception $e) {
-	redirect('/register.php?err=' . urlencode($e->getMessage()));
+	$_SESSION['err'] = $e->getMessage();
+	redirect('/register.php');
 }
 ?>

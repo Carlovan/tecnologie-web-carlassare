@@ -10,14 +10,15 @@ $authController = new AuthController($database);
 $email = trim($_POST['email']);
 $password = trim($_POST['password']);
 
+session_start();
 try {
 	$user = $authController->login($email, $password);
-	session_start();
 	$_SESSION["userid"] = $user->id;
 
 	redirect('/profile.php');
 } catch (Exception $e) {
-	redirect('/login.php?err=' . urlencode($e->getMessage()));
+	$_SESSION['err'] = $e->getMessage();
+	redirect('/login.php');
 }
 
 ?>
