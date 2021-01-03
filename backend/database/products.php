@@ -1,8 +1,13 @@
 <?php
 
 class ProductsDatabase {
+	private $database;
 	private $products = NULL;
 	private $filename = DB_D . 'products.db';
+
+	function __construct($database) {
+		$this->database = $database;
+	}
 
 	private function loadData() {
 		if (is_null($this->products)) {
@@ -10,6 +15,9 @@ class ProductsDatabase {
 			if ($this->products === false) {
 				$this->products = array();
 				$this->saveData();
+			}
+			foreach ($this->products as $product) {
+				$product->database = $this->database;
 			}
 		}
 	}
@@ -19,6 +27,25 @@ class ProductsDatabase {
 
 	function assignId($product) {
 		$product->id = uniqid("prod-");
+	}
+
+	function all() {
+		$this->loadData();
+		return array_values($this->products);
+	}
+
+	function lastAdded() {
+		$this->loadData();
+		$ps = array_values($this->products);
+		usort($ps, function($a, $b) {return $b->insertDateTime - $a->insertDateTime; });
+		return array_slice($ps, 0, 10);
+	}
+
+	function mostSold() {
+		$this->loadData();
+		$ps = array_values($this->products);
+		usort($ps, function($a, $b) {return $b->soldCount - $a->soldCount; });
+		return array_slice($ps, 0, 10);
 	}
 
 	function get($id) {

@@ -14,12 +14,22 @@ class Product {
 	public $sellerId; // Seller
 	public $category; // array[string]
 
+	public $database;
+
+	function __construct($database = NULL) {
+		$this->database = $database;
+	}
+
 	function formatPrice() {
 		return number_format($this->priceInCents / 100, 2, '.', '');
 	}
 
 	function createImageBaseName() {
 		return 'product-' . $this->id;
+	}
+
+	function getSeller() {
+		return $this->database->sellers->byUserId($this->sellerId);
 	}
 }
 

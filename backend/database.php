@@ -16,7 +16,7 @@ class Database {
 	function __construct() {
 		$this->users = new UsersDatabase();
 		$this->sellers = new SellersDatabase();
-		$this->products = new ProductsDatabase();
+		$this->products = new ProductsDatabase($this);
 	}
 }
 
