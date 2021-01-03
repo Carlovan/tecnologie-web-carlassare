@@ -34,11 +34,13 @@ try {
 	}
 
 
-	$seller = new Seller();
-	$seller->userId = $user->id;
-	$seller->name = $name;
-	$seller->website = empty($website) ? NULL : $website;
-	$seller->description = $description;
+	$seller = new Seller(array(
+		'userId' => $user->id,
+		'name' => $name,
+		'website' => empty($website) ? NULL : $website,
+		'description' => $description,
+		'imagePath' => ''
+	));
 	$seller->imagePath = $imagesController->getUploadedImage($imageField, $seller->createImageBaseName());
 
 	$database->sellers->add($seller);

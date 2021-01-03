@@ -1,65 +1,59 @@
 <?php
 
 class UsersDatabase {
-	private $users = NULL;
-	private $filename = DB_D . 'users.db';
+	private $database;
+	public $tableName = "users";
 
-	private function loadData() {
-		if (is_null($this->users)) {
-			$this->users = unserialize(file_get_contents($this->filename));
-			if ($this->users === false) {
-				$this->users = array();
-				$this->saveData();
-			}
-		}
+	function __construct($database) {
+		$this->database = $database;
 	}
-	private function saveData() {
-		file_put_contents($this->filename, serialize($this->users));
+
+	function initTable() {
+		$this->database->conn()->query(
+<<<QUERY
+	CREATE TABLE IF NOT EXISTS {$this->tableName} (
+		id VARCHAR(255) NOT NULL PRIMARY KEY,
+		email VARCHAR(255) NOT NULL UNIQUE,
+		name VARCHAR(255) NOT NULL,
+		passwordHash VARCHAR(255) NOT NULL,
+		streetAndNumber VARCHAR(255) NOT NULL,
+		city VARCHAR(255) NOT NULL,
+		zipCode VARCHAR(5) NOT NULL
+	);
+QUERY
+		);
 	}
 
 	function get($id) {
-		$this->loadData();
-
-		foreach ($this->users as $user) {
-			if ($user->id === $id) {
-				return $user;
-			}
+		$result = $this->database->query("SELECT * FROM {$this->tableName} WHERE id = ?;", 's', [$id]);
+		if (empty($result)) {
+			return NULL;
 		}
-		return NULL;
+		return new User($result[0]);
 	}
 
 	function byEmail($email) {
-		$this->loadData();
-
-		foreach ($this->users as $user) {
-			if ($user->email === $email) {
-				return $user;
-			}
+		$result = $this->database->query("SELECT * FROM {$this->tableName} WHERE LOWER(email) = LOWER(?);", 's', [$email]);
+		if (empty($result)) {
+			return NULL;
 		}
-		return NULL;
+		return new User($result[0]);
 	}
 
 	function add($user) {
-		$this->loadData();
 		if (is_null($user->id)) {
-			$user->id = count($this->users);
+			$user->id = uniqid('user-');
 		}
-		$this->users[] = $user;
-		$this->saveData();
-		return $user->id;
+		$this->database->statement("INSERT INTO {$this->tableName} (id, email, name, passwordHash, streetAndNumber, city, zipCode) VALUES (?, ?, ?, ?, ?, ?, ?);",
+			'sssssss',
+			[$user->id, $user->email, $user->name, $user->passwordHash, $user->shippingAddress->streetAndNumber, $user->shippingAddress->city, $user->shippingAddress->zipCode]);
+		return $id;
 	}
 
 	function update($user) {
-		$this->loadData();
-
-		foreach ($this->users as $k => $u) {
-			if ($u->id === $user->id) {
-				$this->users[$k] = $user;
-				break;
-			}
-		}
-
-		$this->saveData();
+		$this->database->statement("UPDATE {$this->tableName} SET email = ?, name = ?, passwordHash = ?, streetAndNumber = ?, city = ?, zipCode = ? WHERE id = ?;",
+			'sssssss',
+			[$user->email, $user->name, $user->passwordHash, $user->shippingAddress->streetAndNumber, $user->shippingAddress->city, $user->shippingAddress->zipCode, $user->id]);
 	}
 }
 

@@ -8,6 +8,14 @@ class Seller {
 	public $website; // string?
 	public $userId; // string
 
+	function __construct($dataArray) {
+		$this->name = $dataArray['name'];
+		$this->description = $dataArray['description'];
+		$this->imagePath = $dataArray['imagePath'];
+		$this->website = $dataArray['website'];
+		$this->userId = $dataArray['userId'];
+	}
+
 	// Generates the name of the profile picture,
 	// without path and extension
 	function createImageBaseName() {

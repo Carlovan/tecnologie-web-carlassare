@@ -1,74 +1,58 @@
 <?php
 
 class SellersDatabase {
-	private $sellers = NULL;
-	private $filename = DB_D . 'sellers.db';
+	private $database;
+	public $tableName = "sellers";
 
-	private function loadData() {
-		if (is_null($this->sellers)) {
-			$this->sellers = unserialize(file_get_contents($this->filename));
-			if ($this->sellers === false) {
-				$this->sellers = array();
-				$this->saveData();
-			}
-		}
+	function __construct($database) {
+		$this->database = $database;
 	}
-	private function saveData() {
-		file_put_contents($this->filename, serialize($this->sellers));
+
+	function initTable() {
+		$this->database->users->initTable();
+		$this->database->conn()->query(
+<<<QUERY
+	CREATE TABLE IF NOT EXISTS {$this->tableName} (
+		userId VARCHAR(255) NOT NULL PRIMARY KEY,
+		name VARCHAR(255) NOT NULL,
+		description TEXT NOT NULL,
+		imagePath VARCHAR(255) NOT NULL,
+		website VARCHAR(255),
+		CONSTRAINT fk_user
+		FOREIGN KEY (userId) REFERENCES {$this->database->users->tableName}(id)
+	);
+QUERY
+		);
 	}
 
 	function byUserId($userId) {
-		$this->loadData();
-
-		foreach ($this->sellers as $seller) {
-			if ($seller->userId === $userId) {
-				return $seller;
-			}
+		$result = $this->database->query("SELECT * FROM {$this->tableName} WHERE userId = ?;", 's', [$userId]);
+		if (empty($result)) {
+			return NULL;
 		}
-		return NULL;
+		return new Seller($result[0]);
 	}
 
 	function byName($name) {
-		$this->loadData();
-
-		foreach ($this->sellers as $seller) {
-			if (strtolower($seller->name) === strtolower($name)) {
-				return $seller;
-			}
+		$result = $this->database->query("SELECT * FROM {$this->tableName} WHERE LOWER(name) = LOWER(?);", 's', [$name]);
+		if (empty($result)) {
+			return NULL;
 		}
-		return NULL;
+		return new Seller($result[0]);
 	}
 
 	function add($seller) {
-		$this->loadData();
-		$this->sellers[] = $seller;
-		$this->saveData();
+		$this->database->statement("INSERT INTO {$this->tableName}(userId, name, description, imagePath, website) VALUES (?, ?, ?, ?, ?);",
+			'sssss', [$seller->userId, $seller->name, $seller->description, $seller->imagePath, $seller->website]);
 	}
 
 	function update($seller) {
-		$this->loadData();
-
-		foreach ($this->sellers as $k => $s) {
-			if ($s->userId === $seller->userId) {
-				$this->sellers[$k] = $seller;
-				break;
-			}
-		}
-
-		$this->saveData();
+		$this->database->statement("UPDATE {$this->tableName} SET name = ?, description = ?, imagePath = ?, website = ? WHERE userId = ?;",
+			'sssss', [$seller->name, $seller->description, $seller->imagePath, $seller->website, $seller->userId]);
 	}
 
 	function remove($id) {
-		$this->loadData();
-
-		foreach ($this->sellers as $k => $s) {
-			if ($s->userId === $id) {
-				unset($this->sellers[$k]);
-				break;
-			}
-		}
-
-		$this->saveData();
+		$this->database->statement("DELETE FROM {$this->tableName} WHERE userId = ?;", 's', [$seller->userId]);
 	}
 }
 

@@ -16,8 +16,22 @@ class Product {
 
 	public $database;
 
-	function __construct($database = NULL) {
+	function __construct($dataArray, $database = NULL) {
 		$this->database = $database;
+		if (array_key_exists('id', $dataArray)) {
+			$this->id = $dataArray['id'];
+		}
+		$this->name = $dataArray['name'];
+		$this->description = $dataArray['description'];
+		$this->priceInCents = $dataArray['priceInCents'];
+		$this->imagePath = $dataArray['imagePath'];
+		$this->insertDateTime = $dataArray['insertDateTime'];
+		$this->quantity = $dataArray['quantity'];
+		if (array_key_exists('soldCount', $dataArray)) {
+			$this->soldCount = $dataArray['soldCount'];
+		}
+		$this->sellerId = $dataArray['sellerId'];
+		$this->category = $dataArray['category'];
 	}
 
 	function formatPrice() {

@@ -6,7 +6,7 @@ require_once(FRAGS_D . 'page_delimiters.php');
 
 $database = new Database();
 
-$product = $database->getProduct($_GET['id']);
+$product = $database->products->get($_GET['id']);
 
 page_start($product->name);
 require('../fragments/nav.php');
@@ -18,7 +18,7 @@ require('../fragments/nav.php');
 		<section class="row align-items-end mt-3">
 			<div class="col">
 				<h1 class="mb-0"><?= $product->name ?></h1>
-				<p class="mt-0 mb-2"><small class="text-muted"><?= $product->seller->name ?></small></p>
+				<p class="mt-0 mb-2"><small class="text-muted"><?= $product->getSeller()->name ?></small></p>
 				<p class="h5"><?= $product->formatPrice() ?> €</p>
 			</div>
 			<div class="col-2">

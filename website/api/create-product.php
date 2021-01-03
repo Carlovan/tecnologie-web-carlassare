@@ -32,14 +32,16 @@ try {
 		throw new Exception("È necessario fornire un'immagine");
 	}
 
-	$product = new Product();
-	$product->name = $name;
-	$product->description = $description;
-	$product->priceInCents = intval($price * 100);
-	$product->quantity = $quantity;
-	$product->insertDateTime = time();
-	$product->sellerId = $user->id;
-	$product->category = explode(' > ', $category);
+	$product = new Product(array(
+		'name' => $name,
+		'description' => $description,
+		'priceInCents' => intval($price * 100),
+		'quantity' => $quantity,
+		'insertDateTime' => time(),
+		'sellerId' => $user->id,
+		'category' => explode(' > ', $category),
+		'imagePath' => ''
+	));
 
 	$database->products->assignId($product);
 	$product->imagePath = $imagesController->getUploadedImage($imageField, $product->createImageBaseName());

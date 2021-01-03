@@ -21,14 +21,15 @@ class AuthController {
 			throw new InvalidArgumentException("L'indirizzo email specificato è già in uso");
 		}
 
-		$user = new User();
-		$user->name = $name;
-		$user->email = $email;
-		$user->passwordHash = $this->usersController->passwordHash($password);
-		$user->shippingAddress = new Address();
-		$user->shippingAddress->streetAndNumber = $streetAndNumber;
-		$user->shippingAddress->city = $city;
-		$user->shippingAddress->zipCode = $zipCode;
+		$user = new User(array(
+			'name' => $name,
+			'email' => $email,
+			'passwordHash' => $this->usersController->passwordHash($password),
+			'shippingAddress' => new Address(),
+			'streetAndNumber' => $streetAndNumber,
+			'city' => $city,
+			'zipCode' => $zipCode
+		));
 
 		$this->database->users->add($user);
 	}
