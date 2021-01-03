@@ -20,7 +20,7 @@ try {
 		$database->products->remove($p->id);
 	}
 
-	$database->sellers->remove($seller);
+	$database->sellers->remove($seller->userId);
 	$_SESSION['info'] = 'Profilo venditore rimosso correttamente';
 } catch (Exception $e) {
 	$_SESSION['err'] = $e->getMessage();

@@ -58,11 +58,11 @@ class SellersDatabase {
 		$this->saveData();
 	}
 
-	function remove($seller) {
+	function remove($id) {
 		$this->loadData();
 
 		foreach ($this->sellers as $k => $s) {
-			if ($s->userId === $seller->userId) {
+			if ($s->userId === $id) {
 				unset($this->sellers[$k]);
 				break;
 			}
