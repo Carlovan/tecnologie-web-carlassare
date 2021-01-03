@@ -2,10 +2,12 @@
 require_once('../../config.php');
 require_once(MAIN_DIR . 'utils.php');
 require_once(BACKEND_D . 'database.php');
+require_once(BACKEND_D . 'controllers/images.php');
 
 session_start();
 
 $database = new Database();
+$imagesController = new ImagesController();
 $user = loggedUserOrRedirect($database);
 $productId = $_GET['id'];
 
@@ -22,6 +24,7 @@ try {
 	}
 
 	$database->products->remove($product->id);
+	$imagesController->removeImage($product->imagePath);
 	$_SESSION['info'] = 'Prodotto rimosso correttamente';
 } catch (Exception $e) {
 	$_SESSION['err'] = $e->getMessage();

@@ -17,6 +17,10 @@ class ProductsDatabase {
 		file_put_contents($this->filename, serialize($this->products));
 	}
 
+	function assignId($product) {
+		$product->id = uniqid("prod-");
+	}
+
 	function get($id) {
 		$this->loadData();
 
@@ -35,7 +39,9 @@ class ProductsDatabase {
 
 	function add($product) {
 		$this->loadData();
-		$product->id = strval(count($this->products));
+		if (is_null($product->id)) {
+			$this->assignId($product);
+		}
 		$this->products[] = $product;
 		$this->saveData();
 		return $product->id;

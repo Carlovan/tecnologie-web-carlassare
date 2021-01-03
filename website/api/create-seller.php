@@ -3,10 +3,12 @@ require_once('../../config.php');
 require_once(MAIN_DIR . 'utils.php');
 require_once(BACKEND_D . 'database.php');
 require_once(BACKEND_D . 'types/seller.php');
+require_once(BACKEND_D . 'controllers/images.php');
 
 session_start();
 
 $database = new Database();
+$imagesController = new ImagesController();
 $user = loggedUserOrRedirect($database);
 
 $name = trim($_POST['name']);
@@ -37,7 +39,7 @@ try {
 	$seller->name = $name;
 	$seller->website = empty($website) ? NULL : $website;
 	$seller->description = $description;
-	$seller->imagePath = getUploadedImage($imageField, $seller->createImageBaseName());
+	$seller->imagePath = $imagesController->getUploadedImage($imageField, $seller->createImageBaseName());
 
 	$database->sellers->add($seller);
 	$_SESSION['info'] = 'Profilo venditore creato correttamente';

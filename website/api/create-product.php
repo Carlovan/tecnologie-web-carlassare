@@ -4,12 +4,14 @@ require_once(MAIN_DIR . 'utils.php');
 require_once(BACKEND_D . 'database.php');
 require_once(BACKEND_D . 'types/seller.php');
 require_once(BACKEND_D . 'controllers/products.php');
+require_once(BACKEND_D . 'controllers/images.php');
 
 session_start();
 
 $database = new Database();
 $user = loggedUserOrRedirect($database);
 $productsController = new ProductsController();
+$imagesController = new ImagesController();
 
 $name = trim($_POST['name']);
 $description = trim($_POST['description']);
@@ -39,9 +41,9 @@ try {
 	$product->sellerId = $user->id;
 	$product->category = explode(' > ', $category);
 
-	$product->id = $database->products->add($product);
-	$product->imagePath = getUploadedImage($imageField, $product->createImageBaseName());
-	$database->products->update($product);
+	$database->products->assignId($product);
+	$product->imagePath = $imagesController->getUploadedImage($imageField, $product->createImageBaseName());
+	$database->products->add($product);
 	$_SESSION['info'] = 'Prodotto creato correttamente';
 	redirect('/profile/seller.php');
 } catch (Exception $e) {

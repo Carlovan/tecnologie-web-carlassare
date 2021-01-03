@@ -4,12 +4,14 @@ require_once(MAIN_DIR . 'utils.php');
 require_once(BACKEND_D . 'database.php');
 require_once(BACKEND_D . 'types/seller.php');
 require_once(BACKEND_D . 'controllers/products.php');
+require_once(BACKEND_D . 'controllers/images.php');
 
 session_start();
 
 $database = new Database();
 $user = loggedUserOrRedirect($database);
 $productsController = new ProductsController();
+$imagesController = new ImagesController();
 
 $name = trim($_POST['name']);
 $description = trim($_POST['description']);
@@ -41,7 +43,7 @@ try {
 	$product->category = explode(' > ', $category);
 
 	if (!isFileUploaded($imageField)) {
-		$product->imagePath = getUploadedImage($imageField, $product->createImageBaseName());
+		$product->imagePath = $imagesController->getUploadedImage($imageField, $product->createImageBaseName());
 	}
 	$database->products->update($product);
 

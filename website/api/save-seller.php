@@ -3,10 +3,12 @@ require_once('../../config.php');
 require_once(MAIN_DIR . 'utils.php');
 require_once(BACKEND_D . 'database.php');
 require_once(BACKEND_D . 'types/seller.php');
+require_once(BACKEND_D . 'controllers/images.php');
 
 session_start();
 
 $database = new Database();
+$imagesController = new ImagesController();
 $user = loggedUserOrRedirect($database);
 
 $name = trim($_POST['name']);
@@ -32,7 +34,7 @@ try {
 	}
 
 	if ($hasImage) {
-		$seller->imagePath = getUploadedImage($imageField, $seller->createImageBaseName());
+		$seller->imagePath = $imagesController->getUploadedImage($imageField, $seller->createImageBaseName());
 	}
 
 	$seller->name = $name;
