@@ -45,6 +45,10 @@ class Product {
 	function getSeller() {
 		return $this->database->sellers->byUserId($this->sellerId);
 	}
+
+	function isFavourite($user) {
+		return $this->database->favourites->exists($this->id, $user->id);
+	}
 }
 
 ?>

@@ -57,6 +57,11 @@ QUERY
 		return new Product($result[0], $this->database);
 	}
 
+	function exists($id) {
+		$result = $this->database->query("SELECT 1 FROM {$this->tableName} WHERE id = ?;", 's', [$id]);
+		return !empty($result);
+	}
+
 	function bySellerId($sellerId) {
 		$result = $this->database->query("SELECT * FROM {$this->tableName} WHERE sellerId = ?;", 's', [$sellerId]);
 		return array_map(function($row) { return new Product($row, $this->database); }, $result);

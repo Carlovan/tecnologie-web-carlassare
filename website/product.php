@@ -1,17 +1,30 @@
 <?php
 require_once('../config.php');
+require_once(MAIN_DIR . 'utils.php');
 require_once(BACKEND_D . 'types/product.php');
 require_once(BACKEND_D . 'database.php');
 require_once(FRAGS_D . 'page_delimiters.php');
 
+session_start();
+
 $database = new Database();
+$user = loggedUser($database);
 
 $product = $database->products->get($_GET['id']);
+if (is_null($product)) {
+	redirect('/');
+}
+$isLogged = !is_null($user);
+$isFavourite = $isLogged && $product->isFavourite($user);
 
 page_start($product->name);
 require('../fragments/nav.php');
 ?>
-	<main class="container product-page mt-nav">
+	<div class="mt-nav"></div>
+<?php
+require(FRAGS_D . 'messages.php');
+?>
+	<main class="container product-page">
 		<header class="row">
 			<img src="<?= $product->imagePath ?>" alt="" class="col-12 g-0 max-vh-50 object-fit-cover"/>
 		</header>
@@ -22,7 +35,21 @@ require('../fragments/nav.php');
 				<p class="h5"><?= $product->formatPrice() ?> €</p>
 			</div>
 			<div class="col-2">
-				<button id="add-favourite" aria-label="Aggiungi ai preferiti" class="btn btn-outline-danger rounded-circle py-2 text-center"><i class="bi bi-heart-fill"></i></button>
+			<?php if ($isLogged) { ?>
+				<?php if ($isFavourite) { ?>
+					<button id="remove-favourite" aria-label="Rimuovi dai preferiti" onclick="removeFavourite();" class="btn btn-outline-danger rounded-circle py-2 text-center">
+						<i class="bi bi-heart-fill"></i>
+					</button>
+				<?php } else { ?>
+					<button id="add-favourite" aria-label="Aggiungi ai preferiti" onclick="addFavourite();" class="btn btn-outline-danger rounded-circle py-2 text-center">
+						<i class="bi bi-heart"></i>
+					</button>
+				<?php } ?>
+			<?php } else { ?>
+					<button id="favourite" aria-label="Aggiungi ai preferiti" disabled class="btn btn-outline-secondary rounded-circle py-2 text-center">
+						<i class="bi bi-heart-fill"></i>
+					</button>
+			<?php } ?>
 			</div>
 		</section>
 		<hr />
@@ -35,6 +62,16 @@ require('../fragments/nav.php');
 			<button class="btn btn-success w-100">Aggiungi al carrello</button>
 		</footer>
 	</main>
+	<?php if ($isLogged) { ?>
+	<script>
+		function addFavourite() {
+			window.location.href = '/api/add-favourite.php?id=<?= $product->id ?>';
+		}
+		function removeFavourite() {
+			window.location.href = '/api/remove-favourite.php?id=<?= $product->id ?>';
+		}
+	</script>
+	<?php } ?>
 <?php
 page_end();
 ?>

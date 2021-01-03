@@ -5,6 +5,7 @@ require_once(BACKEND_D . 'types/seller.php');
 require_once(BACKEND_D . 'database/products.php');
 require_once(BACKEND_D . 'database/users.php');
 require_once(BACKEND_D . 'database/sellers.php');
+require_once(BACKEND_D . 'database/favourites.php');
 
 class Database {
 	private $connection;
@@ -12,6 +13,7 @@ class Database {
 	public $users;
 	public $sellers;
 	public $products;
+	public $favourites;
 
 	function __construct() {
 		$this->connection = new mysqli(DB_HOST, DB_USER, DB_PASS, DB_NAME);
@@ -19,6 +21,7 @@ class Database {
 		$this->users = new UsersDatabase($this);
 		$this->sellers = new SellersDatabase($this);
 		$this->products = new ProductsDatabase($this);
+		$this->favourites = new FavouritesDatabase($this);
 	}
 
 	function conn() {
@@ -48,7 +51,7 @@ class Database {
 	}
 
 	function initDb() {
-		$this->products->initTable();
+		$this->favourites->initTable();
 	}
 
 	private function prepareQuery($statement, $bindTypes, $bindValues) {
