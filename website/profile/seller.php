@@ -65,9 +65,31 @@ if ($isSeller) {
 		<hr />
 		<section class="row g-0 justify-content-center mb-4">
 			<a href="seller/new-product.php" role="button" class="col-6 btn btn-success">Aggiungi prodotto</a>
-			<?php productListSeller($products); ?>
+			<?php foreach ($products as $p) { ?>
+				<div class="card col-11 my-2">
+					<div class="row g-2">
+						<div class="col">
+							<a href="seller/edit-product.php?id=<?= $p->id ?>" class="row g-2 text-reset text-decoration-none">
+								<img src="<?= $p->imagePath ?>" alt="" class="col-4 rounded-start object-fit-cover"/>
+								<div class="col pt-2">
+									<h2 class="mb-0"><?= $p->name ?></h2>
+									<p class="h5"><?= $p->formatPrice() ?> €</p>
+								</div>
+							</a>
+						</div>
+						<div class="col-1 me-2 pt-2">
+							<button aria-label="Rimuovi" class="ms-auto border-0 bg-transparent p-0" onclick="removeProduct(<?= $p->id ?>);"><i class="bi bi-trash text-danger"></i></button>
+						</div>
+					</div>
+				</div>
+			<?php } ?>
 		</section>
 	</main>
+	<script>
+		function removeProduct(id) {
+			window.location.href = '/api/remove-product.php?id=' + id;
+		}
+	</script>
 <?php
 }
 page_end();

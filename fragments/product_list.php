@@ -42,15 +42,6 @@ function productListCart($products) {
 
 function productListSeller($products) {
 	foreach ($products as $p) { ?>
-		<div class="card col-11 my-2">
-			<a href="seller/edit-product.php?id=<?= $p->id ?>" class="row g-2 rounded text-reset text-decoration-none">
-				<img src="<?= $p->imagePath ?>" alt="" class="col-4 rounded-start object-fit-cover"/>
-				<div class="col pt-2">
-					<h2 class="mb-0"><?= $p->name ?></h2>
-					<p class="h5"><?= $p->formatPrice() ?> €</p>
-				</div>
-			</a>
-		</div>
 	<?php }
 }
 ?>
