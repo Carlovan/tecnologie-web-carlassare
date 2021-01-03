@@ -24,4 +24,8 @@ function isFileUploaded($fieldName) {
 	return !empty($_FILES[$fieldName]['tmp_name']);
 }
 
+function formatPrice($priceInCents) {
+	return number_format($priceInCents / 100, 2, '.', '');
+}
+
 ?>

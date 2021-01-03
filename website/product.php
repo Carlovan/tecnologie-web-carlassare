@@ -59,7 +59,7 @@ require(FRAGS_D . 'messages.php');
 			<p><?= $product->description ?></p>
 		</section>
 		<footer class="fixed-bottom p-2">
-			<button class="btn btn-success w-100">Aggiungi al carrello</button>
+			<button class="btn btn-success w-100" <?= $isLogged ? "onclick='addCart();'" : "disabled" ?> >Aggiungi al carrello</button>
 		</footer>
 	</main>
 	<?php if ($isLogged) { ?>
@@ -69,6 +69,9 @@ require(FRAGS_D . 'messages.php');
 		}
 		function removeFavourite() {
 			window.location.href = '/api/remove-favourite.php?id=<?= $product->id ?>';
+		}
+		function addCart() {
+			window.location.href = '/api/add-cart-product.php?id=<?= $product->id ?>';
 		}
 	</script>
 	<?php } ?>

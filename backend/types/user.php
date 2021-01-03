@@ -4,6 +4,10 @@ class Address {
 	public $streetAndNumber; // string
 	public $city; // string
 	public $zipCode; // string
+
+	function format() {
+		return "$this->streetAndNumber, $this->zipCode $this->city";
+	}
 }
 
 class User {

@@ -1,5 +1,5 @@
 <?php
-
+require_once(MAIN_DIR . 'utils.php');
 require_once(BACKEND_D . 'types/seller.php');
 
 class Product {
@@ -15,6 +15,8 @@ class Product {
 	public $category; // array[string]
 
 	public $database;
+
+	private $seller;
 
 	function __construct($dataArray, $database = NULL) {
 		$this->database = $database;
@@ -35,7 +37,7 @@ class Product {
 	}
 
 	function formatPrice() {
-		return number_format($this->priceInCents / 100, 2, '.', '');
+		return formatPrice($this->priceInCents);
 	}
 
 	function createImageBaseName() {
@@ -43,7 +45,10 @@ class Product {
 	}
 
 	function getSeller() {
-		return $this->database->sellers->byUserId($this->sellerId);
+		if (is_null($this->seller)) {
+			$this->seller = $this->database->sellers->byUserId($this->sellerId);
+		}
+		return $this->seller;
 	}
 
 	function isFavourite($user) {
