@@ -2,7 +2,7 @@
 
 define('TITLE', "Negozio");
 
-define('WEB_IMGS_PATH', '/assets/images');
+define('WEB_IMGS_PATH', '/assets/images/');
 
 // Directories
 define('MAIN_DIR', __DIR__ . '/');
