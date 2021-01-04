@@ -44,7 +44,7 @@ QUERY;
 	}
 
 	function getOrAdd($productId, $userId) {
-		$cartProduct = $this->get($userId, $productId);
+		$cartProduct = $this->get($productId, $userId);
 		if (is_null($cartProduct)) {
 			$cartProduct = new CartProduct(array(
 				'userId' => $userId,
@@ -68,6 +68,10 @@ QUERY;
 
 	function remove($productId, $userId) {
 		$this->database->statement("DELETE FROM {$this->tableName} WHERE userId = ? AND productId = ?;", 'ss', [$userId, $productId]);
+	}
+
+	function removeAllByUserId($userId) {
+		$this->database->statement("DELETE FROM {$this->tableName} WHERE userId = ?;", 's', [$userId]);
 	}
 }
 

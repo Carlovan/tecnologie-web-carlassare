@@ -3,6 +3,8 @@ require_once('../config.php');
 require_once(MAIN_DIR . 'utils.php');
 require_once(FRAGS_D . 'page_delimiters.php');
 require_once(BACKEND_D . 'database.php');
+require_once(BACKEND_D . 'types/order.php');
+require_once(BACKEND_D . 'types/purchased-product.php');
 
 session_start();
 
@@ -14,9 +16,40 @@ if (empty($entries)) {
 	redirect('/');
 }
 
-foreach ($entries as $entry) {
-	$database->cart->remove($entry->productId, $entry->userId);
+// Create the order
+$order = new Order(array(
+	'userId' => $user->id,
+	'dateTime' => time(),
+	'shippingAddress' => $user->shippingAddress->format()
+), $database);
+
+$database->orders->assignId($order);
+
+function convertEntryToPurchasedProduct($entry) {
+	global $order, $database;
+	return new PurchasedProduct(array(
+		'orderId' => $order->id,
+		'productId' => $entry->productId,
+		'quantity' => $entry->quantity,
+		'productName' => $entry->getProduct()->name,
+		'priceInCents' => $entry->getProduct()->priceInCents,
+		'sellerName' => $entry->getProduct()->getSeller()->name
+	), $database);
 }
+$purchasedProducts = array_map('convertEntryToPurchasedProduct', $entries);
+
+$database->orders->add($order);
+$database->purchasedProducts->addAll($purchasedProducts);
+
+// Update the sold count and available quantity
+foreach ($purchasedProducts as $pp) {
+	$product = $pp->getProduct();
+	$product->soldCount++;
+	$product->quantity--;
+	$database->products->update($product);
+}
+
+$database->cart->removeAllByUserId($user->id);
 
 page_start('Ordine');
 require(FRAGS_D . 'nav.php');
