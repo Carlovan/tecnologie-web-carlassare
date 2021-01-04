@@ -42,7 +42,7 @@ try {
 	$product->quantity = $quantity;
 	$product->category = explode(' > ', $category);
 
-	if (!isFileUploaded($imageField)) {
+	if (isFileUploaded($imageField)) {
 		$product->imagePath = $imagesController->getUploadedImage($imageField, $product->createImageBaseName());
 	}
 	$database->products->update($product);
