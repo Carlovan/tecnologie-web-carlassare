@@ -60,7 +60,7 @@ require(FRAGS_D . 'messages.php');
 		<section class="pb-3">
 			<p class="mb-1">Totale (<?= $totalObjects ?> oggetti): € <?= formatPrice($totalPrice) ?></p>
 			<p><span class="text-success">Spedizione gratuita</span> verso <?= $user->shippingAddress->format() ?></p>
-			<button class="btn btn-success w-100 m-auto">Conferma e paga</button>
+			<a href="/order-complete.php" role="button" class="btn btn-success w-100 m-auto">Conferma e paga</a>
 		</section>
 		<?php } else { ?>
 		<section>

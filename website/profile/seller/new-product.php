@@ -4,6 +4,8 @@ require_once(BACKEND_D . 'database.php');
 require_once(FRAGS_D . 'page_delimiters.php');
 
 session_start();
+$database = new Database();
+$categories = $database->categories->all();
 
 page_start('Aggiungi prodotto');
 require(FRAGS_D . 'nav.php');
@@ -35,9 +37,9 @@ require(FRAGS_D . 'messages.php');
 				<input id="quantity" name="quantity" type="number" required min="0" class="form-control"/>
 				<label for="category" class="form-label">Categoria:</label>
 				<select id="category" name="category" required class="form-select">
-					<option>Cat1 &gt; Cat1.1</option>
-					<option>Cat1 &gt; Cat1.2</option>
-					<option>Cat2 &gt; Cat2.1</option>
+					<?php foreach ($categories as $name => $path) { ?>
+						<option value="<?= $name ?>"><?= implode(' &gt; ', $path) ?></option>
+					<?php } ?>
 				</select>
 				<div class="text-center my-3">
 					<input type="submit" class="btn btn-success w-50 m-auto" value="Crea" />

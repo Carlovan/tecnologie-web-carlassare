@@ -54,7 +54,7 @@ require(FRAGS_D . 'messages.php');
 		</section>
 		<hr />
 		<section class="mb-5">
-			<p><span class="fw-bold">Categoria</span>: <?= implode('<small><i class="bi bi-chevron-right align-top"></i></small>', $product->category) ?></p>
+			<p><span class="fw-bold">Categoria</span>: <?= implode('<small><i class="bi bi-chevron-right align-top"></i></small>', $product->getCategory()) ?></p>
 			<h2>Descrizione</h2>
 			<p><?= $product->description ?></p>
 		</section>

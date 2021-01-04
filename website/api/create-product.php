@@ -28,6 +28,10 @@ try {
 
 	$productsController->validateData($name, $description, $price, $quantity);
 
+	if (!$database->categories->exists($category)) {
+		throw new Exception("La categoria indicata non è valida");
+	}
+
 	if (!isFileUploaded($imageField)) {
 		throw new Exception("È necessario fornire un'immagine");
 	}
@@ -39,7 +43,7 @@ try {
 		'quantity' => $quantity,
 		'insertDateTime' => time(),
 		'sellerId' => $user->id,
-		'category' => explode(' > ', $category),
+		'category' => $category,
 		'imagePath' => ''
 	));
 

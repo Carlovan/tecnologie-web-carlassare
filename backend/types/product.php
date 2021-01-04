@@ -11,8 +11,8 @@ class Product {
 	public $insertDateTime; // int (Unix)
 	public $quantity; // int
 	public $soldCount = 0; // int
-	public $sellerId; // Seller
-	public $category; // array[string]
+	public $sellerId; // string
+	public $category; // string
 
 	public $database;
 
@@ -53,6 +53,10 @@ class Product {
 
 	function isFavourite($user) {
 		return $this->database->favourites->exists($this->id, $user->id);
+	}
+
+	function getCategory() {
+		return $this->database->categories->getPath($this->category);
 	}
 }
 

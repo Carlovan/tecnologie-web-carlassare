@@ -33,6 +33,9 @@ try {
 	if ($product->sellerId !== $user->id) {
 		throw new Exception("Non sei autorizzato a modificare questo prodotto");
 	}
+	if (!$database->categories->exists($category)) {
+		throw new Exception("La categoria indicata non esiste");
+	}
 
 	$productsController->validateData($name, $description, $price, $quantity);
 
@@ -40,7 +43,7 @@ try {
 	$product->description = $description;
 	$product->priceInCents = intval($price * 100);
 	$product->quantity = $quantity;
-	$product->category = explode(' > ', $category);
+	$product->category = $category;
 
 	if (isFileUploaded($imageField)) {
 		$product->imagePath = $imagesController->getUploadedImage($imageField, $product->createImageBaseName());
