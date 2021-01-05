@@ -22,11 +22,7 @@ if (is_null($product) || $product->sellerId !== $seller->userId) {
 page_start('Modifica prodotto');
 require(FRAGS_D . 'nav.php');
 ?>
-	<div class="mt-nav"></div>
-<?php
-require(FRAGS_D . 'messages.php');
-?>
-	<main class="container">
+	<main class="container mt-nav">
 		<header>
 			<h1>Modifica prodotto</h1>
 		</header>

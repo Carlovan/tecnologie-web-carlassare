@@ -20,11 +20,7 @@ $isFavourite = $isLogged && $product->isFavourite($user);
 page_start($product->name);
 require('../fragments/nav.php');
 ?>
-	<div class="mt-nav"></div>
-<?php
-require(FRAGS_D . 'messages.php');
-?>
-	<main class="container product-page">
+	<main class="container mt-nav product-page">
 		<header class="row">
 			<img src="<?= $product->imagePath ?>" alt="" class="col-12 g-0 max-vh-50 object-fit-cover"/>
 		</header>

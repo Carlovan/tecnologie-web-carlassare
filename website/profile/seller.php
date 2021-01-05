@@ -21,13 +21,7 @@ if ($isSeller) {
 page_start('Profilo Venditore');
 require(FRAGS_D . 'nav.php');
 ?>
-
-<div class="mt-nav"></div> <!-- Utile per aggiungere il margine iniziale -->
-
-<?php
-require(FRAGS_D . 'messages.php');
-?>
-	<main class="container">
+	<main class="container mt-nav">
 		<header>
 			<h1>Profilo venditore per <?= $user->name ?></h1>
 		</header>

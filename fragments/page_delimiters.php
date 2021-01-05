@@ -11,9 +11,14 @@ function page_end() { ?>
 	</template>
 	<script>
 		const toastTemplate = $(document.querySelector("template#toastTemplate").content.firstElementChild);
-		function showToast(message) {
+		function showToast(message, type) { // type is optional
 			const toastEl = toastTemplate.clone(true);
 			toastEl.find(".toast-body").html(message);
+			if (type === "danger") {
+				toastEl.addClass('bg-danger text-white');
+			} else if (type === "success") {
+				toastEl.addClass('bg-success text-white').find('button').addClass('btn-close-white');
+			}
 			$('.toast-container').prepend(toastEl);
 			const toast =  new bootstrap.Toast(toastEl.get(0), {autohide: false});
 			toastEl.on('hidden.bs.toast', function() {
@@ -35,6 +40,19 @@ function page_end() { ?>
 		}
 
 		const updateNotificationsInterval = setInterval(updateNotifications, 10000);
+
+<?php if (isset($_SESSION['err'])) { ?>
+	showToast("<b>Si è verificato un errore: </b><?= $_SESSION['err'] ?>", "danger");
+<?php
+	unset($_SESSION['err']);
+}
+
+if (isset($_SESSION['info'])) { ?>
+	showToast("<?= $_SESSION['info'] ?>", "success");
+<?php
+	unset($_SESSION['info']);
+}
+?>
 	</script>
 	</body>
 	</html>

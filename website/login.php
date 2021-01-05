@@ -7,13 +7,7 @@ session_start();
 page_start('Login');
 require(FRAGS_D . 'nav.php');
 ?>
-
-<div class="mt-nav"></div> <!-- Utile per aggiungere il margine iniziale -->
-
-<?php
-require(FRAGS_D . 'messages.php');
-?>
-	<main class="container">
+	<main class="container mt-nav">
 		<header>
 			<h1>Effettua l'accesso</h1>
 		</header>

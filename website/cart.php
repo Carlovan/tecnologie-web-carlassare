@@ -23,11 +23,7 @@ foreach ($entries as $e) {
 page_start("Carrello");
 require(FRAGS_D . 'nav.php');
 ?>
-	<div class="mt-nav"></div>
-<?php
-require(FRAGS_D . 'messages.php');
-?>
-	<main class="container">
+	<main class="container mt-nav">
 		<header>
 			<h1>Il tuo carrello</h1>
 		</header>
@@ -88,7 +84,7 @@ require(FRAGS_D . 'messages.php');
 				}
 			}).done(function(data) {
 				if (data.error) {
-					showToast(data.error);
+					showToast(data.error, 'danger');
 				} else {
 					// update value and data-originalvalue of input and the button
 					card.find('input[name=quantity]').val(quantity).data('originalvalue', quantity)
