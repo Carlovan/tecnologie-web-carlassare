@@ -9,11 +9,11 @@
 			</a>
 			<ul class="dropdown-menu dropdown-menu-end" aria-labelledby="navbarDropdown">
 				<li><a class="dropdown-item" href="/sellers.php">Venditori</a></li>
-				<li><a class="dropdown-item" href="/categories.php">Categorie</a></li>
+				<li><a class="dropdown-item" href="/all-products.php">Tutti i prodotti</a></li>
 			</ul>
 		</span>
 	</div>
-	<form class="col-12 input-group">
+	<form class="col-12 input-group" action="/search.php">
 		<input type="search" class="form-control" name="q" placeholder="Cerca" title="Cerca" />
 		<input type="submit" class="btn btn-outline-success" value="Cerca" />
 	</form>

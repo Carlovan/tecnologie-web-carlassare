@@ -49,6 +49,17 @@ QUERY
 		return array_map(function($row) { return new Product($row, $this->database); }, $result);
 	}
 
+	function search($words) {
+		if (empty($words)) {
+			return [];
+		}
+		$placeholders = implode(' AND ', array_fill(0, count($words), 'LOWER(CONCAT(name, description)) LIKE ?'));
+		$placeholdersTypes = str_repeat('s', count($words));
+		$placeholdersValues = array_map(function($w) { return "%$w%"; }, $words);
+		$result = $this->database->query("SELECT * FROM {$this->tableName} WHERE $placeholders;", $placeholdersTypes, $placeholdersValues);
+		return array_map(function($row) { return new Product($row, $this->database); }, $result);
+	}
+
 	function get($id) {
 		$result = $this->database->query("SELECT * FROM {$this->tableName} WHERE id = ?;", 's', [$id]);
 		if (empty($result)) {

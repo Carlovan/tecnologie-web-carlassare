@@ -1,3 +1,5 @@
+- [ ] Tutti i prodotti (con selezione categoria)
+- [ ] Ricerca (con selezione categoria)
 - [ ] Conferma per rimozione seller
 - [ ] COnferma per rimozione prodotto seller
 - [ ] Conferma completamento acquisto
