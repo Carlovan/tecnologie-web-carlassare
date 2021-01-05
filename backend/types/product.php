@@ -58,6 +58,12 @@ class Product {
 	function getCategory() {
 		return $this->database->categories->getPath($this->category);
 	}
+
+	// Calculates the quantity of this product, accounting also for the ones in the cart but not purchased yet
+	function checkFreeQuantity() {
+		$busy = $this->database->cart->getTotalProductQuantity($this->id);
+		return $this->quantity - $busy;
+	}
 }
 
 ?>

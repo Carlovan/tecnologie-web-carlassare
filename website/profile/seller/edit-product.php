@@ -48,6 +48,7 @@ require(FRAGS_D . 'messages.php');
 				</div>
 				<label for="quantity" class="form-label mt-2">Quantità disponibile:</label>
 				<input id="quantity" name="quantity" type="number" required min="0" value="<?= $product->quantity ?>" class="form-control"/>
+				<p class="text-muted">Il prodotto è stato acquistato <?= $product->soldCount ?> volte</p>
 				<label for="category" class="form-label">Categoria:</label>
 				<select id="category" name="category" required class="form-select">
 					<?php foreach ($categories as $name => $path) { ?>

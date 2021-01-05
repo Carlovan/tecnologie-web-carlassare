@@ -30,12 +30,12 @@ QUERY;
 		}
 	}
 
-	private function get($productId, $userId) {
+	function get($productId, $userId) {
 		$result = $this->database->query("SELECT * FROM {$this->tableName} WHERE userId = ? AND productId = ?;", 'ss', [$userId, $productId]);
 		if (empty($result)) {
 			return NULL;
 		}
-		return new CartProduct($result[0]);
+		return new CartProduct($result[0], $this->database);
 	}
 
 	private function add($cartProduct) {
@@ -59,6 +59,11 @@ QUERY;
 	function byUserId($userId) {
 		$result = $this->database->query("SELECT * FROM {$this->tableName} WHERE userId = ?;", 's', [$userId]);
 		return array_map(function($row) { return new CartProduct($row, $this->database); }, $result);
+	}
+
+	function getTotalProductQuantity($productId) {
+		$result = $this->database->query("SELECT SUM(quantity) as busy FROM {$this->tableName} WHERE productId = ?;", 's', [$productId]);
+		return $result[0]['busy'];
 	}
 
 	function update($cartProduct) {

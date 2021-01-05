@@ -27,6 +27,11 @@ class CartProduct {
 	function totalPrice() {
 		return $this->getProduct()->priceInCents * $this->quantity;
 	}
+
+	function checkNewQuantity($quantity) {
+		$offset = $quantity - $this->quantity;
+		return $offset <= 0 || $this->getProduct()->checkFreeQuantity() >= $offset;
+	}
 }
 
 ?>

@@ -59,7 +59,7 @@ require(FRAGS_D . 'messages.php');
 			<p><?= $product->description ?></p>
 		</section>
 		<footer class="fixed-bottom p-2">
-			<button class="btn btn-success w-100" <?= $isLogged ? "onclick='addCart();'" : "disabled" ?> >Aggiungi al carrello</button>
+			<button class="btn btn-success w-100" <?= $isLogged && $product->checkFreeQuantity() > 0 ? "onclick='addCart();'" : "disabled" ?> >Aggiungi al carrello</button>
 		</footer>
 	</main>
 	<?php if ($isLogged) { ?>

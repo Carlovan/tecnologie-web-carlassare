@@ -14,6 +14,9 @@ try {
 		throw new Exception('Il prodotto richiesto non esiste');
 	}
 	$cartProduct = $database->cart->getOrAdd($productId, $user->id);
+	if (!$cartProduct->checkNewQuantity($cartProduct->quantity + 1)) {
+		throw new Exception("Non c'è abbastanza disponibilità");
+	}
 	$cartProduct->quantity++;
 	$database->cart->update($cartProduct);
 	$_SESSION['info'] = 'Prodotto aggiunto al carrello';
