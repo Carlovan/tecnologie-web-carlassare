@@ -64,7 +64,12 @@ if ($isSeller) {
 ?>
 		<hr />
 		<section class="row g-0 justify-content-center mb-4">
-			<a href="seller/new-product.php" role="button" class="col-6 btn btn-success">Aggiungi prodotto</a>
+			<div class="col-6">
+				<a href="seller/new-product.php" role="button" class="btn btn-success">Aggiungi prodotto</a>
+			</div>
+			<div class="col-6">
+				<a href="seller/orders.php" role="button" class="btn btn-success">Ordini in sospeso</a>
+			</div>
 			<?php foreach ($products as $p) { ?>
 				<div class="card col-11 my-2">
 					<div class="row g-2">

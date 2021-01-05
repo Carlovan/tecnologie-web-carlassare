@@ -10,6 +10,7 @@ class PurchasedProduct {
 	public $productName; // string
 	public $priceInCents; // int
 	public $sellerName; // string
+	public $shipped = false; // bool
 
 	function __construct($dataArray, $database = NULL) {
 		$this->database = $database;
@@ -25,6 +26,9 @@ class PurchasedProduct {
 		$this->productName = $dataArray['productName'];
 		$this->priceInCents = $dataArray['priceInCents'];
 		$this->sellerName = $dataArray['sellerName'];
+		if (array_key_exists('shipped', $dataArray)) {
+			$this->shipped = boolval($dataArray['shipped']);
+		}
 	}
 
 	function totalPriceInCents() {

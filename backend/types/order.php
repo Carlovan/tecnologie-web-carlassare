@@ -30,6 +30,10 @@ class Order {
 		return $this->getProds();
 	}
 
+	function getProductsBySellerId($sellerId) {
+		return $this->database->purchasedProducts->byOrderAndSellerId($this->id, $sellerId);
+	}
+
 	function getFirstProductName() {
 		return $this->getProds()[0]->productName;
 	}

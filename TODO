@@ -11,4 +11,5 @@
 	- [ ] Prodotto acquistato
 	- [ ] Ordine spedito
 - [ ] Impedire aggiunta al carrello se zero disponibilità
-- [ ] Venditore segna ordine spedito
+- [x] Venditore segna ordine spedito
+- [ ] Mostra venduti per venditore

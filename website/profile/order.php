@@ -35,7 +35,12 @@ require(FRAGS_D . 'nav.php');
 					$imagePath = $p->getProduct()->imagePath;
 				} ?>
 				<div class="card col-11 my-2">
-					<a <?= $anchorAttributes ?> class="row g-0 text-reset text-decoration-none">
+					<a <?= $anchorAttributes ?> class="row g-0 text-reset text-decoration-none position-relative">
+						<?php if ($p->shipped) { ?>
+							<div class="badge rounded-circle bg-success position-absolute top-0 start-0 m-2 col-1 w-small p-1">
+								<img src='/assets/icons/truck.svg' alt="Spedito" title="Spedito" class="w-100" />
+							</div>
+						<?php } ?>
 						<img src="<?= $imagePath ?>" alt="Immagine prodotto" class="col-3 object-fit-cover" />
 						<div class="col ps-2 pe-3 py-1">
 							<h3 class="mb-0"><?= $p->productName ?></h3>

@@ -24,6 +24,7 @@ class PurchasedProductsDatabase {
 		productName VARCHAR(255) NOT NULL,
 		priceInCents INT NOT NULL,
 		sellerName VARCHAR(255) NOT NULL,
+		shipped BOOLEAN NOT NULL DEFAULT FALSE,
 		CONSTRAINT fk_purch_order FOREIGN KEY (orderId) REFERENCES {$this->database->orders->tableName}(id),
 		CONSTRAINT fk_purch_product FOREIGN KEY (productId) REFERENCES {$this->database->products->tableName}(id)
 			ON DELETE SET NULL,
@@ -41,15 +42,27 @@ QUERY;
 		return array_map(function($row) { return new PurchasedProduct($row, $this->database); }, $result);
 	}
 
+	function byOrderAndSellerId($orderId, $sellerId) {
+		$ppt = $this->tableName;
+		$pt = $this->database->products->tableName;
+		$result = $this->database->query("SELECT $ppt.* FROM $ppt JOIN $pt ON $ppt.productId = $pt.id WHERE $ppt.orderId = ? AND $pt.sellerId = ?;",
+			'ss', [$orderId, $sellerId]);
+		return array_map(function($row) { return new PurchasedProduct($row, $this->database); }, $result);
+	}
+
 	function addAll($purchasedProducts) {
-		$placeholders = implode(', ', array_fill(0, count($purchasedProducts), '(?, ?, ?, ?, ?, ?, ?)'));
-		$placeholdersTypes = str_repeat('sssisis', count($purchasedProducts));
+		$placeholders = implode(', ', array_fill(0, count($purchasedProducts), '(?, ?, ?, ?, ?, ?, ?, ?)'));
+		$placeholdersTypes = str_repeat('sssisisi', count($purchasedProducts));
 		$placeholdersValues = array_merge(...array_map(
-			function($p) { return [$p->orderId, $p->originalProductId, $p->productId, $p->quantity, $p->productName, $p->priceInCents, $p->sellerName]; },
+			function($p) { return [$p->orderId, $p->originalProductId, $p->productId, $p->quantity, $p->productName, $p->priceInCents, $p->sellerName, $p->shipped]; },
 			$purchasedProducts
 		));
-		$this->database->statement("INSERT INTO {$this->tableName}(orderId, originalProductId, productId, quantity, productName, priceInCents, sellerName) VALUES $placeholders;",
+		$this->database->statement("INSERT INTO {$this->tableName}(orderId, originalProductId, productId, quantity, productName, priceInCents, sellerName, shipped) VALUES $placeholders;",
 			$placeholdersTypes, $placeholdersValues);
+	}
+
+	function setShipped($orderId, $productId) {
+		$this->database->statement("UPDATE {$this->tableName} SET shipped = TRUE WHERE orderId = ? AND originalProductId = ?;", 'ss', [$orderId, $productId]);
 	}
 
 }

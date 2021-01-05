@@ -45,6 +45,15 @@ QUERY;
 		return array_map(function($row) { return new Order($row, $this->database); }, $result);
 	}
 
+	function bySellerId($sellerId) {
+		$ot = $this->tableName;
+		$ppt = $this->database->purchasedProducts->tableName;
+		$pt = $this->database->products->tableName;
+		$result = $this->database->query("SELECT DISTINCT $ot.* FROM $ot JOIN $ppt ON $ot.id = $ppt.orderId JOIN $pt ON $pt.id = $ppt.productId WHERE $ppt.shipped = FALSE AND $pt.sellerId = ?;",
+			's', [$sellerId]);
+		return array_map(function($row) { return new Order($row, $this->database); }, $result);
+	}
+
 	function add($order) {
 		$this->database->statement("INSERT INTO {$this->tableName}(id, dateTime, userId, shippingAddress) VALUES (?, ?, ?, ?);",
 			'siss', [$order->id, $order->dateTime, $order->userId, $order->shippingAddress]);

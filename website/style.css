@@ -17,3 +17,7 @@ input.arrows-none::-webkit-inner-spin-button {
 input.arrows-none[type=number] {
   -moz-appearance: textfield;
 }
+
+.w-small {
+	width: 20px;
+}
