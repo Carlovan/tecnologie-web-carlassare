@@ -29,7 +29,7 @@ QUERY;
 	}
 
 	function assignId($order) {
-		$order->id = uniqid('order-');
+		$order->id = uniqid('o');
 	}
 
 	function get($id) {

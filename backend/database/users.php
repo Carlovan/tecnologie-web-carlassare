@@ -42,7 +42,7 @@ QUERY
 
 	function add($user) {
 		if (is_null($user->id)) {
-			$user->id = uniqid('user-');
+			$user->id = uniqid('u');
 		}
 		$this->database->statement("INSERT INTO {$this->tableName} (id, email, name, passwordHash, streetAndNumber, city, zipCode) VALUES (?, ?, ?, ?, ?, ?, ?);",
 			'sssssss',

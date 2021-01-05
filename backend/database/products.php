@@ -31,7 +31,7 @@ QUERY
 	}
 
 	function assignId($product) {
-		$product->id = uniqid("prod-");
+		$product->id = uniqid("p");
 	}
 
 	function all() {

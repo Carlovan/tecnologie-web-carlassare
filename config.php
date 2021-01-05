@@ -12,8 +12,6 @@ define('FRAGS_D', MAIN_DIR . 'fragments/');
 define('WEBSITE_D', MAIN_DIR . 'website/');
 define('IMAGES_D', realpath(WEBSITE_D . WEB_IMGS_PATH) . '/');
 
-define('DB_D', MAIN_DIR . 'data/');
-
 define('DB_HOST', 'localhost');
 define('DB_USER', 'sito_u');
 define('DB_PASS', 'password');
