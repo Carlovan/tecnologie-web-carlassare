@@ -25,6 +25,11 @@ QUERY
 		);
 	}
 
+	function all() {
+		$result = $this->database->query("SELECT * FROM {$this->tableName};");
+		return array_map(function($row) { return new Seller($row); }, $result);
+	}
+
 	function byUserId($userId) {
 		$result = $this->database->query("SELECT * FROM {$this->tableName} WHERE userId = ?;", 's', [$userId]);
 		if (empty($result)) {

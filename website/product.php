@@ -22,7 +22,12 @@ require('../fragments/nav.php');
 ?>
 	<main class="container px-0 mt-nav d-lg-flex">
 		<header class="col-lg-4">
-			<img src="<?= $product->imagePath ?>" alt="" class="col-12 g-0 max-vh-50 object-fit-cover"/>
+			<div class="position-relative col-12 g-0 max-vh-50">
+				<img src="<?= $product->imagePath ?>" alt="Immagine prodotto" class="w-100 object-fit-cover rounded"/>
+				<?php if ($product->checkFreeQuantity() <= 0) { ?>
+				<span class="badge rounded-pill bg-danger position-absolute top-0 start-0 m-3">Non disponibile</span>
+				<?php } ?>
+			</div>
 			<div class="d-none d-lg-block text-center mt-4">
 				<button class="btn btn-success w-75 mx-auto" <?= $isLogged && $product->checkFreeQuantity() > 0 ? "onclick='addCart();'" : "disabled" ?> >Aggiungi al carrello</button>
 			</div>
@@ -31,7 +36,7 @@ require('../fragments/nav.php');
 			<section class="row align-items-end mt-3">
 				<div class="col">
 					<h1 class="mb-0"><?= $product->name ?></h1>
-					<p class="mt-0 mb-2"><small class="text-muted"><?= $product->getSeller()->name ?></small></p>
+					<a href="/seller.php?id=<?= $product->getSeller()->userId ?>" class="mt-0 mb-2 text-reset text-decoration-none"><small class="text-muted"><?= $product->getSeller()->name ?></small></a>
 					<p class="h5"><?= $product->formatPrice() ?> €</p>
 				</div>
 				<div class="col-2">
