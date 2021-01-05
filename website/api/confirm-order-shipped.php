@@ -24,6 +24,18 @@ foreach ($purchasedProducts as $p) {
 	$database->purchasedProducts->setShipped($p->orderId, $p->originalProductId);
 }
 
+$msg = 'Il prodotto <b>' . $purchasedProducts[0]->productName . '</b> ';
+if (count($purchasedProducts) > 1) {
+	$msg .= 'e ' . count($purchasedProducts) . 'altr' . (count($purchasedProducts) == 2 ? 'o' : 'i') . ' sono stati spediti';
+} else {
+	$msg .= 'è stato spedito';
+}
+$database->notifications->add(new Notification(array(
+	'message' => $msg,
+	'userId' => $user->id,
+	'dateTime' => time()
+)));
+
 redirect('/profile/seller/orders.php');
 
 ?>

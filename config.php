@@ -1,6 +1,7 @@
 <?php
 
 define('TITLE', "Negozio");
+define('QUANTITY_ALERT', 5);
 
 define('WEB_IMGS_PATH', '/assets/images/');
 

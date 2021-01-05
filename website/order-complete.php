@@ -3,6 +3,7 @@ require_once('../config.php');
 require_once(MAIN_DIR . 'utils.php');
 require_once(FRAGS_D . 'page_delimiters.php');
 require_once(BACKEND_D . 'database.php');
+require_once(BACKEND_D . 'controllers/notifications.php');
 require_once(BACKEND_D . 'types/order.php');
 require_once(BACKEND_D . 'types/purchased-product.php');
 
@@ -10,6 +11,7 @@ session_start();
 
 $database = new Database();
 $user = loggedUserOrRedirect($database);
+$notificationsController = new NotificationsController($database);
 
 $entries = $database->cart->byUserId($user->id);
 if (empty($entries)) {
@@ -47,6 +49,21 @@ foreach ($purchasedProducts as $pp) {
 	$product->soldCount++;
 	$product->quantity--;
 	$database->products->update($product);
+	if ($product->quantity == 0) {
+		$notificationsController->send($product->sellerId, 'Il tuo prodotto <b>' . $product->name . '</b> è terminato!!');
+	} else if ($product->quantity < QUANTITY_ALERT) {
+		$notificationsController->send($product->sellerId, 'Il tuo prodotto <b>' . $product->name . '</b> è quasi terminato');
+	}
+}
+
+// Send notification to involved sellers
+$sellers = array();
+foreach ($purchasedProducts as $pp) {
+	$sellers[] = $pp->getProduct()->sellerId;
+}
+$sellers = array_unique($sellers);
+foreach ($sellers as $s) {
+	$notificationsController->send($s, 'Qualcuno ha comprato un tuo prodotto!!');
 }
 
 $database->cart->removeAllByUserId($user->id);
