@@ -21,3 +21,7 @@ input.arrows-none[type=number] {
 .w-small {
 	width: 20px;
 }
+
+.toast-container {
+	z-index: 2000;
+}

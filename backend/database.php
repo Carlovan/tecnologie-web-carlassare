@@ -10,6 +10,7 @@ require_once(BACKEND_D . 'database/cart.php');
 require_once(BACKEND_D . 'database/categories.php');
 require_once(BACKEND_D . 'database/orders.php');
 require_once(BACKEND_D . 'database/purchased-products.php');
+require_once(BACKEND_D . 'database/notifications.php');
 
 class Database {
 	private $connection;
@@ -22,6 +23,7 @@ class Database {
 	public $categories;
 	public $orders;
 	public $purchasedProducts;
+	public $notifications;
 
 	function __construct() {
 		$this->connection = new mysqli(DB_HOST, DB_USER, DB_PASS, DB_NAME);
@@ -34,6 +36,7 @@ class Database {
 		$this->categories = new CategoriesDatabase($this);
 		$this->orders = new OrdersDatabase($this);
 		$this->purchasedProducts = new PurchasedProductsDatabase($this);
+		$this->notifications = new NotificationsDatabase($this);
 	}
 
 	function conn() {
@@ -71,6 +74,7 @@ class Database {
 		$this->categories->initTable();
 		$this->orders->initTable();
 		$this->purchasedProducts->initTable();
+		$this->notifications->initTable();
 	}
 
 	private function prepareQuery($statement, $bindTypes, $bindValues) {
