@@ -5,11 +5,11 @@
 	- [ ] rimozione prodotto seller
 	- [ ] rimozione seller?
 	- [ ] aggiunta preferiti
-	- [ ] modifica quantità carrello
-- [ ] Notifiche
+	- [x] modifica quantità carrello
+- [x] Notifiche
 	- [x] Prodotto (quasi) terminato [venditore]
 	- [x] Prodotto acquistato
 	- [x] Ordine spedito
-- [ ] Impedire aggiunta al carrello se zero disponibilità
+- [x] Impedire aggiunta al carrello se zero disponibilità
 - [x] Venditore segna ordine spedito
-- [ ] Mostra venduti per venditore
+- [x] Mostra venduti per venditore
