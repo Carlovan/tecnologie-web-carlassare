@@ -24,13 +24,13 @@ require(FRAGS_D . 'nav.php');
 ?>
 	<main class="container mt-nav">
 		<header>
-			<h1>Modifica prodotto</h1>
+			<h1 class="text-md-center">Modifica prodotto</h1>
 		</header>
-		<section class="mt-4">
-			<form action="/api/save-product.php" method="POST" enctype="multipart/form-data" class="col-10 m-auto">
-				<div class="text-center">
-					<img src="<?= $product->imagePath ?>" alt="Immagine prodotto" class="w-50 img-thumbnail" />
-				</div>
+		<section class="mt-4 d-lg-flex">
+			<div class="text-center col-lg-3">
+				<img src="<?= $product->imagePath ?>" alt="Immagine prodotto" class="col-6 col-lg-11 img-thumbnail" />
+			</div>
+			<form action="/api/save-product.php" method="POST" enctype="multipart/form-data" class="col-10 col-lg m-auto">
 				<label for="picture" class="form-label">Immagine:</label>
 				<input id="picture" name="picture" type="file" accept="image/*" class="form-control" />
 				<label for="name" class="form-label mt-2">Nome:</label>
@@ -52,7 +52,7 @@ require(FRAGS_D . 'nav.php');
 					<?php } ?>
 				</select>
 				<div class="text-center my-3">
-					<input type="submit" class="btn btn-success w-50 m-auto" value="Salva" />
+					<input type="submit" class="btn btn-success col-6 col-lg-3 m-auto" value="Salva" />
 				</div>
 				<input type="hidden" name="productId" value="<?= $product->id ?>" />
 			</form>

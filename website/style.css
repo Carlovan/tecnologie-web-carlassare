@@ -25,3 +25,27 @@ input.arrows-none[type=number] {
 .toast-container {
 	z-index: 2000;
 }
+
+.faded-container {
+	position: relative;
+}
+.faded-container.faded-right::after {
+	content: "";
+	display: block;
+	position: absolute;
+	top: 0;
+	right: 0;
+	height: 100%;
+	width: 30%;
+	background: linear-gradient(to right, transparent, white 90%);
+}
+.faded-container.faded-left::before {
+	content: "";
+	display: block;
+	position: absolute;
+	top: 0;
+	left: 0;
+	height: 100%;
+	width: 30%;
+	background: linear-gradient(to left, transparent, white 90%);
+}

@@ -10,11 +10,11 @@ page_start('Pagina principale');
 require(FRAGS_D . 'nav.php');
 ?>
 	<main class="container mt-nav">
-		<section class="row g-0 justify-content-center">
+		<section class="row justify-content-center">
 			<h1>Ultimi aggiunti</h1>
 			<?php productList($database->products->lastAdded()); ?>
 		</section>
-		<section class="row g-0 justify-content-center">
+		<section class="row justify-content-center">
 			<h1>Più venduti</h1>
 			<?php productList($database->products->mostSold()); ?>
 		</section>

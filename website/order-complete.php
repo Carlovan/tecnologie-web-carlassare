@@ -71,10 +71,12 @@ $database->cart->removeAllByUserId($user->id);
 page_start('Ordine');
 require(FRAGS_D . 'nav.php');
 ?>
-	<main class="mt-nav text-center">
+	<main class="container-lg mt-nav text-center">
 		<section>
-			<img src="/assets/images/shipping.gif" alt="La spedizione verrà effettuata a breve" class="w-100" />
-			<h1 class="text-success display-1">Ordine completato!</h1>
+			<div class="faded-container faded-right faded-left col-12 col-lg-7 mx-lg-auto">
+				<img src="/assets/images/shipping.gif" alt="La spedizione verrà effettuata a breve" class="w-100" />
+			</div>
+			<h1 class="text-success display-1 display-lg-2">Ordine completato!</h1>
 			<h2 class="display-4 text-muted mx-3">La spedizione verrà effettuata al più presto</h2>
 		</section>
 	</main>

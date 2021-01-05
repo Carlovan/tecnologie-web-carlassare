@@ -8,27 +8,29 @@ page_start('Login');
 require(FRAGS_D . 'nav.php');
 ?>
 	<main class="container mt-nav">
-		<header>
-			<h1>Effettua l'accesso</h1>
-		</header>
-		<section class="mt-2">
-			<a href="/register.php">Non hai ancora un account? Registrati!</a>
-		</section>
-		<section class="mt-4">
-			<form action="/api/auth/login.php" method="POST" class="w-75 m-auto">
-				<label for="email" class="form-label">Email:</label>
-				<input id="email" name="email" type="email" required class="form-control" />
-				<label for="password" class="form-label mt-4">Password:</label>
-				<div class="input-group mb-4">
-					<input id="password" name="password" type="password" required class="form-control" />
-					<input type="checkbox" class="btn-check" id="show_pass" autocomplete="off" onchange="showPassword(this.checked);" />
-					<label id="show_pass_label" class="btn btn-outline-primary" for="show_pass" aria-label="Mostra password"><i class="bi bi-eye-fill"></i></label>
-				</div>
-				<div class="text-center">
-					<input type="submit" class="btn btn-success w-50 m-auto" value="Accedi" />
-				</div>
-			</form>
-		</section>
+		<div class="col-lg-4 mx-lg-auto">
+			<header>
+				<h1>Effettua l'accesso</h1>
+			</header>
+			<section class="mt-2">
+				<a href="/register.php">Non hai ancora un account? Registrati!</a>
+			</section>
+			<section class="mt-4">
+				<form action="/api/auth/login.php" method="POST" class="w-75 m-auto">
+					<label for="email" class="form-label">Email:</label>
+					<input id="email" name="email" type="email" required class="form-control" />
+					<label for="password" class="form-label mt-4">Password:</label>
+					<div class="input-group mb-4">
+						<input id="password" name="password" type="password" required class="form-control" />
+						<input type="checkbox" class="btn-check" id="show_pass" autocomplete="off" onchange="showPassword(this.checked);" />
+						<label id="show_pass_label" class="btn btn-outline-primary" for="show_pass" aria-label="Mostra password"><i class="bi bi-eye-fill"></i></label>
+					</div>
+					<div class="text-center">
+						<input type="submit" class="btn btn-success w-50 m-auto" value="Accedi" />
+					</div>
+				</form>
+			</section>
+		</div>
 	</main>
 	<script>
 		function showPassword(isVisible) {
