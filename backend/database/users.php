@@ -9,7 +9,7 @@ class UsersDatabase {
 	}
 
 	function initTable() {
-		$this->database->conn()->query(
+		$query = 
 <<<QUERY
 	CREATE TABLE IF NOT EXISTS {$this->tableName} (
 		id VARCHAR(50) NOT NULL PRIMARY KEY,
@@ -20,8 +20,7 @@ class UsersDatabase {
 		city VARCHAR(255) NOT NULL,
 		zipCode VARCHAR(5) NOT NULL
 	);
-QUERY
-		);
+QUERY;
 		if (!$this->database->conn()->query($query)) {
 			echo "Errore creando users: ", $this->database->conn()->error;
 		}

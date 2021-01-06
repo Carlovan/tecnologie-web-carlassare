@@ -10,7 +10,7 @@ class ProductsDatabase {
 
 	function initTable() {
 		$this->database->sellers->initTable();
-		$this->database->conn()->query(
+		$query = 
 <<<QUERY
 	CREATE TABLE IF NOT EXISTS {$this->tableName} (
 		id VARCHAR(50) NOT NULL PRIMARY KEY,
@@ -26,8 +26,7 @@ class ProductsDatabase {
 		CONSTRAINT fk_seller
 		FOREIGN KEY (sellerId) REFERENCES {$this->database->sellers->tableName}(userId)
 	);
-QUERY
-		);
+QUERY;
 		if (!$this->database->conn()->query($query)) {
 			echo "Errore creando products: ", $this->database->conn()->error;
 		}

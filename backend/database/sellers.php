@@ -10,7 +10,7 @@ class SellersDatabase {
 
 	function initTable() {
 		$this->database->users->initTable();
-		$this->database->conn()->query(
+		$query =
 <<<QUERY
 	CREATE TABLE IF NOT EXISTS {$this->tableName} (
 		userId VARCHAR(50) NOT NULL PRIMARY KEY,
@@ -21,8 +21,7 @@ class SellersDatabase {
 		CONSTRAINT fk_user
 		FOREIGN KEY (userId) REFERENCES {$this->database->users->tableName}(id)
 	);
-QUERY
-		);
+QUERY;
 		if (!$this->database->conn()->query($query)) {
 			echo "Errore creando sellers: ", $this->database->conn()->error;
 		}
