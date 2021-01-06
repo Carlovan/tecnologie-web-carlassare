@@ -91,7 +91,9 @@ if ($isSeller) {
 	</main>
 	<script>
 		function removeProduct(id) {
-			window.location.href = '/api/remove-product.php?id=' + id;
+			showModal('Sei sicuro?', 'Il prodotto verrà eliminato dalle liste dei preferiti e dai carrelli degli utenti!', 'confirm', function() {
+				window.location.href = '/api/remove-product.php?id=' + id;
+			});
 		}
 	</script>
 <?php

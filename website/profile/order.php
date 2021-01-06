@@ -29,7 +29,7 @@ require(FRAGS_D . 'nav.php');
 				<h2>Prodotti relativi a questo ordine:</h2>
 				<?php foreach ($order->getProducts() as $p) {
 					if (is_null($p->productId)) {
-						$anchorAttributes = 'href="#" onclick="showModal();"';
+						$anchorAttributes = 'href="#" onclick="showMessage();"';
 						$imagePath = '/assets/images/placeholder.png';
 						$imageAlt = 'Immagine mancante';
 					} else {
@@ -65,8 +65,8 @@ require(FRAGS_D . 'nav.php');
 		</div>
 	</main>
 	<script>
-		function showModal() {
-			alert("Questo prodotto non è più disponibile");
+		function showMessage() {
+			showModal('Non disponibile', 'Il venditore ha eliminato questo prodotto, che quindi non è più disponibile');
 		}
 	</script>
 <?php

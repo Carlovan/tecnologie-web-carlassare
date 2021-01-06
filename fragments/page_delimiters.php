@@ -9,9 +9,29 @@ function page_end() { ?>
 			</div>
 		</div>
 	</template>
+	<template id="modalTemplate">
+		<div class="modal fade" tabindex="-1" aria-labelledby="modal-title" aria-hidden="true">
+			<div class="modal-dialog">
+				<div class="modal-content">
+					<div class="modal-header">
+						<h1 class="modal-title h5" id="modal-title"></h1>
+						<button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+					</div>
+					<div class="modal-body"></div>
+					<div class="modal-footer modal-confirm">
+						<button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Annulla</button>
+						<button type="button" class="btn btn-danger btn-callback">Conferma</button>
+					</div>
+					<div class="modal-footer modal-info">
+						<button type="button" class="btn btn-primary" data-bs-dismiss="modal">Chiudi</button>
+					</div>
+				</div>
+			</div>
+		</div>
+	</template>
 	<script>
-		const toastTemplate = $(document.querySelector("template#toastTemplate").content.firstElementChild);
 		function showToast(message, type) { // type is optional
+			const toastTemplate = $(document.querySelector("template#toastTemplate").content.firstElementChild);
 			const toastEl = toastTemplate.clone(true);
 			toastEl.find(".toast-body").html(message);
 			if (type === "danger") {
@@ -37,6 +57,28 @@ function page_end() { ?>
 			.done(function(data) {
 				data.notifications.forEach(showToast);
 			});
+		}
+
+		function showModal(title, message, type, callback) {
+			const modalTemplate = $(document.querySelector("template#modalTemplate").content.firstElementChild);
+			const modalEl = modalTemplate.clone(true);
+			modalEl.find('.modal-title').html(title);
+			modalEl.find('.modal-body').html(message);
+			var buttonsSelector = '';
+			if (type === undefined || type === 'info') {
+				buttonsSelector = '.modal-info';
+			} else if (type === 'confirm') {
+				buttonsSelector = '.modal-confirm';
+			}
+			modalEl.find(buttonsSelector).siblings('.modal-footer').remove();
+			modalEl.find('.btn-callback').on('click', callback);
+			modalEl.prependTo('body');
+			const modal = new bootstrap.Modal(modalEl.get(0), {});
+			modalEl.on('hidden.bs.modal', function() {
+				modal.dispose();
+				modalEl.remove();
+			});
+			modal.show();
 		}
 
 		const updateNotificationsInterval = setInterval(updateNotifications, 10000);

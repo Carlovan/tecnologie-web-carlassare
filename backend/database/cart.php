@@ -20,7 +20,7 @@ class CartDatabase {
 		productId VARCHAR(50) NOT NULL,
 		quantity INT NOT NULL,
 		CONSTRAINT fk_cart_user FOREIGN KEY (userId) REFERENCES {$this->database->users->tableName}(id),
-		CONSTRAINT fk_cart_prod FOREIGN KEY (productId) REFERENCES {$this->database->products->tableName}(id),
+		CONSTRAINT fk_cart_prod FOREIGN KEY (productId) REFERENCES {$this->database->products->tableName}(id) ON DELETE CASCADE,
 		PRIMARY KEY uniq_cart_pair (userId, productId)
 	);
 QUERY;

@@ -19,7 +19,7 @@ class FavouritesDatabase {
 		userId VARCHAR(50) NOT NULL,
 		productId VARCHAR(50) NOT NULL,
 		CONSTRAINT fk_fav_user FOREIGN KEY (userId) REFERENCES {$this->database->users->tableName}(id),
-		CONSTRAINT fk_fav_prod FOREIGN KEY (productId) REFERENCES {$this->database->products->tableName}(id),
+		CONSTRAINT fk_fav_prod FOREIGN KEY (productId) REFERENCES {$this->database->products->tableName}(id) ON DELETE CASCADE,
 		PRIMARY KEY uniq_pair (userId, productId)
 	);
 QUERY;
