@@ -29,7 +29,7 @@ require(FRAGS_D . 'nav.php');
 							<div class="row g-2">
 								<div class="col">
 									<a href="/product.php?id=<?= $p->id ?>" class="row g-2 text-reset text-decoration-none">
-										<img src="<?= $p->imagePath ?>" alt="" class="col-4 rounded-start object-fit-cover"/>
+										<img src="<?= $p->imagePath ?>" alt="Immagine prodotto" class="col-4 rounded-start object-fit-cover"/>
 										<div class="col pt-2">
 											<h2 class="mb-0"><?= $p->name ?></h2>
 											<p class="h5"><?= $p->formatPrice() ?> €</p>
