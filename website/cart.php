@@ -25,8 +25,8 @@ require(FRAGS_D . 'nav.php');
 ?>
 	<main class="container mt-nav">
 		<?php if ($totalObjects > 0) { ?>
-		<h1>Il tuo carrello</h1>
-		<section class="row g-0 justify-content-center">
+		<h1 class="text-lg-center">Il tuo carrello</h1>
+		<section class="row g-0 justify-content-center col-lg-5 mx-lg-auto">
 			<?php foreach ($entries as $i => $e) { ?>
 				<div id="<?= $e->productId ?>" class="card col-11 my-2 product-card">
 					<div class="row g-2 rounded text-reset text-decoration-none">
@@ -51,11 +51,11 @@ require(FRAGS_D . 'nav.php');
 				</div>
 			<?php } ?>
 		</section>
-		<hr />
-		<section class="pb-3">
+		<hr class="col-lg-6 mx-auto" />
+		<section class="pb-3 col-lg-5 mx-lg-auto">
 			<p class="mb-1">Totale (<?= $totalObjects ?> oggetti): € <span id="grand-total-price"><?= formatPrice($totalPrice) ?></span></p>
 			<p><span class="text-success">Spedizione gratuita</span> verso <?= $user->shippingAddress->format() ?></p>
-			<a href="/order-complete.php" role="button" class="btn btn-success w-100 m-auto">Conferma e paga</a>
+			<a href="/order-complete.php" role="button" class="btn btn-success col-12 col-lg-4 mx-auto d-block">Conferma e paga</a>
 		</section>
 		<?php } else { ?>
 		<section>
