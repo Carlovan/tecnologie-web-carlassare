@@ -49,14 +49,28 @@ QUERY
 		return array_map(function($row) { return new Product($row, $this->database); }, $result);
 	}
 
-	function search($words) {
+	function byCategories($categories) {
+		$placeholders = implode(', ', array_fill(0, count($categories), '?'));
+		$placeholdersTypes = str_repeat('s', count($categories));
+		$result = $this->database->query("SELECT * FROM {$this->tableName} WHERE category IN ($placeholders);", $placeholdersTypes, $categories);
+		return array_map(function($row) { return new Product($row, $this->database); }, $result);
+	}
+
+	function search($words, $categories = []) {
 		if (empty($words)) {
 			return [];
 		}
 		$placeholders = implode(' AND ', array_fill(0, count($words), 'LOWER(CONCAT(name, description)) LIKE ?'));
 		$placeholdersTypes = str_repeat('s', count($words));
 		$placeholdersValues = array_map(function($w) { return "%$w%"; }, $words);
-		$result = $this->database->query("SELECT * FROM {$this->tableName} WHERE $placeholders;", $placeholdersTypes, $placeholdersValues);
+		$catFilter = '';
+		if (!empty($categories)) {
+			$catPlaceholders = implode(', ', array_fill(0, count($categories), '?'));
+			$catFilter = "AND category IN ($catPlaceholders)";
+			$placeholdersTypes .= str_repeat('s', count($categories));
+			$placeholdersValues = array_merge($placeholdersValues, $categories);
+		}
+		$result = $this->database->query("SELECT * FROM {$this->tableName} WHERE $placeholders $catFilter;", $placeholdersTypes, $placeholdersValues);
 		return array_map(function($row) { return new Product($row, $this->database); }, $result);
 	}
 
