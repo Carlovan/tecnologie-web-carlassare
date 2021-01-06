@@ -17,9 +17,9 @@ class PurchasedProductsDatabase {
 		$query = 
 <<<QUERY
 	CREATE TABLE IF NOT EXISTS {$this->tableName} (
-		orderId VARCHAR(255) NOT NULL,
-		originalProductId VARCHAR(255) NOT NULL,
-		productId VARCHAR(255) NULL,
+		orderId VARCHAR(50) NOT NULL,
+		originalProductId VARCHAR(50) NOT NULL,
+		productId VARCHAR(50) NULL,
 		quantity INT NOT NULL,
 		productName VARCHAR(255) NOT NULL,
 		priceInCents INT NOT NULL,

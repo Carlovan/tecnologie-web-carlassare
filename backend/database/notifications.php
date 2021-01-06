@@ -16,7 +16,7 @@ class NotificationsDatabase {
 <<<QUERY
 	CREATE TABLE IF NOT EXISTS {$this->tableName} (
 		id INT AUTO_INCREMENT NOT NULL PRIMARY KEY,
-		userId VARCHAR(255) NOT NULL,
+		userId VARCHAR(50) NOT NULL,
 		seen BOOLEAN NOT NULL DEFAULT FALSE,
 		message TEXT NOT NULL,
 		dateTime INT NOT NULL,

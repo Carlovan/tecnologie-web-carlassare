@@ -24,8 +24,8 @@ class CategoriesDatabase {
 		$query = 
 <<<QUERY
 	CREATE TABLE IF NOT EXISTS {$this->tableName} (
-		name VARCHAR(255) NOT NULL PRIMARY KEY,
-		parent VARCHAR(255) NULL,
+		name VARCHAR(50) NOT NULL PRIMARY KEY,
+		parent VARCHAR(50) NULL,
 		CONSTRAINT fk_cat_parent FOREIGN KEY (parent) REFERENCES {$this->tableName}(name)
 	);
 QUERY;

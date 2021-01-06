@@ -15,9 +15,9 @@ class OrdersDatabase {
 		$query = 
 <<<QUERY
 	CREATE TABLE IF NOT EXISTS {$this->tableName} (
-		id VARCHAR(255) NOT NULL PRIMARY KEY,
+		id VARCHAR(50) NOT NULL PRIMARY KEY,
 		dateTime INT NOT NULL,
-		userId VARCHAR(255) NOT NULL,
+		userId VARCHAR(50) NOT NULL,
 		shippingAddress VARCHAR(255) NOT NULL,
 		CONSTRAINT fk_ord_user FOREIGN KEY (userId) REFERENCES {$this->database->users->tableName}(id)
 	);

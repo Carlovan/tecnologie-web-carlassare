@@ -16,8 +16,8 @@ class CartDatabase {
 		$query = 
 <<<QUERY
 	CREATE TABLE IF NOT EXISTS {$this->tableName} (
-		userId VARCHAR(255) NOT NULL,
-		productId VARCHAR(255) NOT NULL,
+		userId VARCHAR(50) NOT NULL,
+		productId VARCHAR(50) NOT NULL,
 		quantity INT NOT NULL,
 		CONSTRAINT fk_cart_user FOREIGN KEY (userId) REFERENCES {$this->database->users->tableName}(id),
 		CONSTRAINT fk_cart_prod FOREIGN KEY (productId) REFERENCES {$this->database->products->tableName}(id),

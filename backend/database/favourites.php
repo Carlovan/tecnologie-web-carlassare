@@ -16,8 +16,8 @@ class FavouritesDatabase {
 		$query = 
 <<<QUERY
 	CREATE TABLE IF NOT EXISTS {$this->tableName} (
-		userId VARCHAR(255) NOT NULL,
-		productId VARCHAR(255) NOT NULL,
+		userId VARCHAR(50) NOT NULL,
+		productId VARCHAR(50) NOT NULL,
 		CONSTRAINT fk_fav_user FOREIGN KEY (userId) REFERENCES {$this->database->users->tableName}(id),
 		CONSTRAINT fk_fav_prod FOREIGN KEY (productId) REFERENCES {$this->database->products->tableName}(id),
 		PRIMARY KEY uniq_pair (userId, productId)
