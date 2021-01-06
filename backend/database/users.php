@@ -13,7 +13,7 @@ class UsersDatabase {
 <<<QUERY
 	CREATE TABLE IF NOT EXISTS {$this->tableName} (
 		id VARCHAR(50) NOT NULL PRIMARY KEY,
-		email VARCHAR(255) NOT NULL UNIQUE,
+		email VARCHAR(50) NOT NULL UNIQUE,
 		name VARCHAR(255) NOT NULL,
 		passwordHash VARCHAR(255) NOT NULL,
 		streetAndNumber VARCHAR(255) NOT NULL,
