@@ -22,6 +22,9 @@ class UsersDatabase {
 	);
 QUERY
 		);
+		if (!$this->database->conn()->query($query)) {
+			echo "Errore creando users: ", $this->database->conn()->error;
+		}
 	}
 
 	function get($id) {

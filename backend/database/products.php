@@ -28,6 +28,9 @@ class ProductsDatabase {
 	);
 QUERY
 		);
+		if (!$this->database->conn()->query($query)) {
+			echo "Errore creando products: ", $this->database->conn()->error;
+		}
 	}
 
 	function assignId($product) {

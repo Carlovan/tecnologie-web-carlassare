@@ -23,6 +23,9 @@ class SellersDatabase {
 	);
 QUERY
 		);
+		if (!$this->database->conn()->query($query)) {
+			echo "Errore creando sellers: ", $this->database->conn()->error;
+		}
 	}
 
 	function all() {
