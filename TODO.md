@@ -1,7 +1,7 @@
 - [x] Tutti i prodotti (con selezione categoria)
 - [x] Ricerca (con selezione categoria)
 - [ ] Conferma per rimozione seller
-- [ ] COnferma per rimozione prodotto seller
+- [x] COnferma per rimozione prodotto seller
 - [ ] Conferma completamento acquisto
 - [ ] AJAX:
 	- [ ] rimozione prodotto seller
