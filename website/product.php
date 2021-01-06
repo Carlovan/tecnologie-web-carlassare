@@ -43,23 +43,23 @@ require('../fragments/nav.php');
 				<?php if ($isLogged) { ?>
 					<?php if ($isFavourite) { ?>
 						<button id="remove-favourite" aria-label="Rimuovi dai preferiti" onclick="removeFavourite();" class="btn btn-outline-danger rounded-circle py-2 text-center">
-							<i class="bi bi-heart-fill"></i>
+							<span class="bi bi-heart-fill"></span>
 						</button>
 					<?php } else { ?>
 						<button id="add-favourite" aria-label="Aggiungi ai preferiti" onclick="addFavourite();" class="btn btn-outline-danger rounded-circle py-2 text-center">
-							<i class="bi bi-heart"></i>
+							<span class="bi bi-heart"></span>
 						</button>
 					<?php } ?>
 				<?php } else { ?>
 						<button id="favourite" aria-label="Aggiungi ai preferiti" disabled class="btn btn-outline-secondary rounded-circle py-2 text-center">
-							<i class="bi bi-heart-fill"></i>
+							<span class="bi bi-heart-fill"></span>
 						</button>
 				<?php } ?>
 				</div>
 			</section>
 			<hr />
 			<section class="mb-5">
-				<p><span class="fw-bold">Categoria</span>: <?= implode('<small><i class="bi bi-chevron-right align-top"></i></small>', $product->getCategory()) ?></p>
+				<p><span class="fw-bold">Categoria</span>: <?= implode('<small><span class="bi bi-chevron-right align-top"></span></small>', $product->getCategory()) ?></p>
 				<h2>Descrizione</h2>
 				<p><?= $product->description ?></p>
 			</section>

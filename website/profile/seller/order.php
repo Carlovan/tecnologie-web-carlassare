@@ -28,7 +28,7 @@ require(FRAGS_D . 'nav.php');
 	<main class="mt-nav container">
 		<div class="col-lg-6 mx-lg-auto">
 			<header class="mb-2">
-				<h1 class="mb-0">Ordine <i class="fs-2">"<?= $order->id ?>"</i></h1>
+				<h1 class="mb-0">Ordine <span class="fs-2 fst-italic">"<?= $order->id ?>"</span></h1>
 				<span class="text-muted"><?= $order->formatDateTime() ?></span>
 			</header>
 			<section class="row g-0 justify-content-center">

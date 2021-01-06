@@ -40,7 +40,7 @@ require(FRAGS_D . 'nav.php');
 								<label for="quantity<?= $i ?>">Quantità: </label>
 								<input id="quantity<?= $i ?>" name="quantity" type="number" required min=1 inputmode="decimal" class="form-control w-25 ms-2 p-0 arrows-none text-center" value="<?= $e->quantity ?>" data-originalvalue="<?= $e->quantity ?>"/>
 								<button class="save-button btn btn-sm btn-success px-1 py-0 ms-1 invisible" onclick="updateQuantity('<?= $e->productId ?>');">Salva</button>
-								<button aria-label="Rimuovi" class="ms-auto border-0 bg-transparent p-0" onclick="removeFromCart('<?= $e->productId ?>');"><i class="bi bi-trash text-danger"></i></button>
+								<button aria-label="Rimuovi" class="ms-auto border-0 bg-transparent p-0" onclick="removeFromCart('<?= $e->productId ?>');"><span class="bi bi-trash text-danger"></span></button>
 							</div>
 							<div class="d-flex align-items-center">
 								<p class="h5 mb-0">€ <span class="product-single-price"><?= $e->getProduct()->formatPrice() ?></span></p>

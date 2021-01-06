@@ -37,7 +37,9 @@ require(FRAGS_D . 'nav.php');
 									</a>
 								</div>
 								<div class="col-1 me-2 pt-2">
-									<button aria-label="Rimuovi" class="ms-auto border-0 bg-transparent p-0" onclick="removeFavourite('<?= $p->id ?>');"><i class="bi bi-trash text-danger"></i></button>
+									<button aria-label="Rimuovi" class="ms-auto border-0 bg-transparent p-0" onclick="removeFavourite('<?= $p->id ?>');">
+										<span class="bi bi-trash text-danger"></span>
+									</button>
 								</div>
 							</div>
 						</div>

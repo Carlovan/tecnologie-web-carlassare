@@ -20,7 +20,10 @@ require(FRAGS_D . 'nav.php');
 					<div class="input-group">
 						<input id="password" name="password" type="password" required minlength="8" pattern="^(?=.*[a-z])(?=.*[A-Z])(?=.*[0-9])[a-zA-Z0-9]{8,}" aria-describedby="passwordHelpBlock" class="form-control" />
 						<input type="checkbox" class="btn-check" id="show_pass" onchange="showPassword(this.checked);" />
-						<label id="show_pass_label" class="btn btn-outline-primary" for="show_pass" aria-label="Mostra password"><i class="bi bi-eye-fill"></i></label>
+						<label id="show_pass_label" class="btn btn-outline-primary" for="show_pass">
+							<span class="bi bi-eye-fill" aria-hidden="true"></span>
+							<span class="visually-hidden">Mostra o nascondi password</span>
+						</label>
 					</div>
 					<div id="passwordHelpBlock" class="form-text">
 						La password deve essere lunga almeno 8 caratteri e contenere almeno un numero, una minuscola e una maiuscola, e nessun altro carattere.
@@ -47,7 +50,7 @@ require(FRAGS_D . 'nav.php');
 	<script>
 		function showPassword(isVisible) {
 			const passInput = document.getElementById("password");
-			const showBtnIcon = document.querySelector("#show_pass_label > i");
+			const showBtnIcon = document.querySelector("#show_pass_label > .bi");
 			if (isVisible === true) {
 				passInput.type = "text";
 				showBtnIcon.className = "bi bi-eye-slash-fill";

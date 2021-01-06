@@ -32,7 +32,7 @@ require(FRAGS_D . 'nav.php');
 	<main class="container mt-nav">
 		<section class="row justify-content-center justify-content-lg-start">
 			<h1 class="text-lg-center">Ricerca</h1>
-			<h2 class="text-muted h4">Risultati per la ricerca: <i>"<?= implode(' ', $words) ?>"</i></h2>
+			<h2 class="text-muted h4">Risultati per la ricerca: <span class="fst-italic">"<?= implode(' ', $words) ?>"</span></h2>
 			<form id="category-form" class="row">
 				<label for="category" class="col-6 col-lg-2 col-form-label">Filtra per categoria:</label>
 				<div class="col-6 col-lg-3">

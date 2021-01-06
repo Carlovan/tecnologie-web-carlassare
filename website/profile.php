@@ -18,42 +18,42 @@ require(FRAGS_D . 'nav.php');
 			<div class="col-12 col-lg-4 mb-3">
 				<a href="/profile/personaldata.php" class="card text-decoration-none text-reset">
 					<div class="card-body d-flex justify-content-center fw-bold">
-						<i class="bi bi-person-circle text-warning lh-sm"></i><div class="col-5 text-center">Dati personali</div>
+						<span class="bi bi-person-circle text-warning lh-sm"></span><div class="col-5 text-center">Dati personali</div>
 					</div>
 				</a>
 			</div>
 			<div class="col-12 col-lg-4 mb-3">
 				<a href="/profile/address.php" class="card text-decoration-none text-reset">
 					<div class="card-body d-flex justify-content-center fw-bold">
-						<i class="bi bi-house-fill text-primary lh-sm"></i><div class="col-5 text-center">Indirizzo</div>
+						<span class="bi bi-house-fill text-primary lh-sm"></span><div class="col-5 text-center">Indirizzo</div>
 					</div>
 				</a>
 			</div>
 			<div class="col-12 col-lg-4 mb-3">
 				<a href="/profile/orders.php" class="card text-decoration-none text-reset">
 					<div class="card-body d-flex justify-content-center fw-bold">
-						<i class="bi bi-truck text-success lh-sm"></i><div class="col-5 text-center">Ordini</div>
+						<span class="bi bi-truck text-success lh-sm"></span><div class="col-5 text-center">Ordini</div>
 					</div>
 				</a>
 			</div>
 			<div class="col-12 col-lg-4 mb-3">
 				<a href="/profile/favourites.php" class="card text-decoration-none text-reset">
 					<div class="card-body d-flex justify-content-center fw-bold">
-						<i class="bi bi-heart-fill text-danger lh-sm"></i><div class="col-5 text-center">Preferiti</div>
+						<span class="bi bi-heart-fill text-danger lh-sm"></span><div class="col-5 text-center">Preferiti</div>
 					</div>
 				</a>
 			</div>
 			<div class="col-12 col-lg-4 mb-3">
 				<a href="/profile/seller.php" class="card text-decoration-none text-reset">
 					<div class="card-body d-flex justify-content-center fw-bold">
-						<i class="bi bi-shop text-info lh-sm"></i><div class="col-5 text-center">Profilo venditore</div>
+						<span class="bi bi-shop text-info lh-sm"></span><div class="col-5 text-center">Profilo venditore</div>
 					</div>
 				</a>
 			</div>
 			<div class="col-12 col-lg-4 mb-3">
 				<a href="/api/auth/logout.php" class="card text-decoration-none text-reset">
 					<div class="card-body d-flex justify-content-center fw-bold">
-						<i class="bi bi-box-arrow-left text-danger lh-sm"></i><div class="col-5 text-center">Disconnettiti</div>
+						<span class="bi bi-box-arrow-left text-danger lh-sm"></span><div class="col-5 text-center">Disconnettiti</div>
 					</div>
 				</a>
 			</div>
