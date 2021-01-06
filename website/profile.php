@@ -13,9 +13,7 @@ page_start('Profilo');
 require(FRAGS_D . 'nav.php');
 ?>
 	<main class="container mt-nav">
-		<header>
-			<h1 class="text-lg-center">Benvenuto, <?= $user->name ?></h1>
-		</header>
+		<h1 class="text-lg-center">Benvenuto, <?= $user->name ?></h1>
 		<section class="row mt-5">
 			<div class="col-12 col-lg-4 mb-3">
 				<a href="/profile/personaldata.php" class="card text-decoration-none text-reset">

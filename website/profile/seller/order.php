@@ -42,7 +42,7 @@ require(FRAGS_D . 'nav.php');
 								<p class="h5 my-0">€ <?= formatPrice($p->priceInCents) ?></p>
 								<div class="d-flex align-items-center justify-content-between">
 									<p class="mb-0">Quantità: <?= $p->quantity ?></p>
-									<p class="mb-0">Totale: € <span id="total-price fw-bold"><?= formatPrice($p->totalPriceInCents()) ?></span></p>
+									<p class="mb-0">Totale: € <span class="fw-bold"><?= formatPrice($p->totalPriceInCents()) ?></span></p>
 								</div>
 							</div>
 						</div>

@@ -9,10 +9,8 @@ require(FRAGS_D . 'nav.php');
 ?>
 	<main class="container mt-nav">
 		<div class="col-lg-4 mx-lg-auto">
-			<header>
-				<h1>Registrati</h1>
-			</header>
-			<section class="mt-4 row g-0">
+			<h1>Registrati</h1>
+			<div class="mt-4 row g-0">
 				<form action="/api/auth/register.php" method="POST" class="col-10 m-auto">
 					<label for="name" class="form-label">Nome e cognome:</label>
 					<input id="name" name="name" type="text" required class="form-control" />
@@ -21,7 +19,7 @@ require(FRAGS_D . 'nav.php');
 					<label for="password" class="form-label mt-2">Password:</label>
 					<div class="input-group">
 						<input id="password" name="password" type="password" required minlength="8" pattern="^(?=.*[a-z])(?=.*[A-Z])(?=.*[0-9])[a-zA-Z0-9]{8,}" aria-describedby="passwordHelpBlock" class="form-control" />
-						<input type="checkbox" class="btn-check" id="show_pass" autocomplete="off" onchange="showPassword(this.checked);" />
+						<input type="checkbox" class="btn-check" id="show_pass" onchange="showPassword(this.checked);" />
 						<label id="show_pass_label" class="btn btn-outline-primary" for="show_pass" aria-label="Mostra password"><i class="bi bi-eye-fill"></i></label>
 					</div>
 					<div id="passwordHelpBlock" class="form-text">
@@ -43,7 +41,7 @@ require(FRAGS_D . 'nav.php');
 						<input type="submit" class="btn btn-success w-50 m-auto" value="Registrati" />
 					</div>
 				</form>
-			</section>
+			</div>
 		</div>
 	</main>
 	<script>

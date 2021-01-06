@@ -21,10 +21,10 @@ require(FRAGS_D . 'nav.php');
 ?>
 	<main class="mt-nav container">
 		<div class="col-lg-6 mx-auto">
-			<header class="mb-2">
+			<div class="mb-2">
 				<h1 class="mb-0">Ordine <i class="fs-2">"<?= $order->id ?>"</i></h1>
 				<span class="text-muted"><?= $order->formatDateTime() ?></span>
-			</header>
+			</div>
 			<section class="row g-0 justify-content-center">
 				<h2>Prodotti relativi a questo ordine:</h2>
 				<?php foreach ($order->getProducts() as $p) {
@@ -49,7 +49,7 @@ require(FRAGS_D . 'nav.php');
 								<p class="h5 my-0">€ <?= formatPrice($p->priceInCents) ?></p>
 								<div class="d-flex align-items-center justify-content-between">
 									<p class="mb-0">Quantità: <?= $p->quantity ?></p>
-									<p class="mb-0">Totale: € <span id="total-price fw-bold"><?= formatPrice($p->totalPriceInCents()) ?></span></p>
+									<p class="mb-0">Totale: € <span class="fw-bold"><?= formatPrice($p->totalPriceInCents()) ?></span></p>
 								</div>
 							</div>
 						</a>

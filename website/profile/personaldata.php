@@ -26,13 +26,13 @@ require(FRAGS_D . 'nav.php');
 					<label for="old-password" class="form-label mt-2">Password attuale:</label>
 					<div class="input-group">
 						<input id="old-password" name="old-password" type="password" minlength="8" pattern="^(?=.*[a-z])(?=.*[A-Z])(?=.*\d)[a-zA-Z\d]{8,}" class="form-control" />
-						<input type="checkbox" class="btn-check" id="show-old-password" autocomplete="off" onchange="showPassword('old-password', this.checked);" />
+						<input type="checkbox" class="btn-check" id="show-old-password" onchange="showPassword('old-password', this.checked);" />
 						<label id="show-old-password-label" class="btn btn-outline-primary" for="show-old-password" aria-label="Mostra password"><i class="bi bi-eye-fill"></i></label>
 					</div>
 					<label for="new-password" class="form-label mt-2">Nuova password:</label>
 					<div class="input-group">
 						<input id="new-password" name="new-password" type="password" minlength="8" pattern="^(?=.*[a-z])(?=.*[A-Z])(?=.*\d)[a-zA-Z\d]{8,}" aria-describedby="passwordHelpBlock" class="form-control" />
-						<input type="checkbox" class="btn-check" id="show-new-password" autocomplete="off" onchange="showPassword('new-password', this.checked);" />
+						<input type="checkbox" class="btn-check" id="show-new-password" onchange="showPassword('new-password', this.checked);" />
 						<label id="show-new-password-label" class="btn btn-outline-primary" for="show-new-password" aria-label="Mostra password"><i class="bi bi-eye-fill"></i></label>
 					</div>
 					<div id="passwordHelpBlock" class="form-text">

@@ -29,11 +29,11 @@ require(FRAGS_D . 'nav.php');
 	<main class="container mt-nav">
 		<section class="row justify-content-center justify-content-lg-start">
 			<h1>Tutti i prodotti</h1>
-			<form id="category-form" class="row" action="">
+			<form id="category-form" class="row">
 				<label for="category" class="col-6 col-lg-2 col-form-label">Filtra per categoria:</label>
 				<div class="col-6 col-lg-3">
 					<select id="category" name="category" class="form-select">
-						<option value="" <?= $current === "" ? 'selected' : '' ?>></option>
+						<option value="" <?= $current === "" ? 'selected' : '' ?>>Tutte le categorie</option>
 						<?php foreach ($categories as $name => $path) { ?>
 							<option value="<?= $name ?>" <?= $current === $name ? 'selected' : '' ?> ><?= implode(' &gt; ', $path) ?></option>
 						<?php } ?>

@@ -24,10 +24,8 @@ page_start("Carrello");
 require(FRAGS_D . 'nav.php');
 ?>
 	<main class="container mt-nav">
-		<header>
-			<h1>Il tuo carrello</h1>
-		</header>
 		<?php if ($totalObjects > 0) { ?>
+		<h1>Il tuo carrello</h1>
 		<section class="row g-0 justify-content-center">
 			<?php foreach ($entries as $i => $e) { ?>
 				<div id="<?= $e->productId ?>" class="card col-11 my-2 product-card">

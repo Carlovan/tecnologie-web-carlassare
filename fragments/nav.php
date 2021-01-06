@@ -13,7 +13,7 @@
 			<img src="/assets/icons/cart4.svg" alt="Carrello" class="d-lg-none" />
 			<span class="d-none d-lg-inline"> Carrello</span>
 		</a>
-		<span class="nav-item dropdown d-lg-none">
+		<div class="nav-item dropdown d-inline d-lg-none">
 			<a class="p-2" href="#" id="navbarDropdown" role="button" data-bs-toggle="dropdown" aria-expanded="false">
 				<img src="/assets/icons/three-dots-vertical.svg" alt="Menu" />
 			</a>
@@ -21,7 +21,7 @@
 				<li><a class="dropdown-item" href="/sellers.php">Venditori</a></li>
 				<li><a class="dropdown-item" href="/all-products.php">Tutti i prodotti</a></li>
 			</ul>
-		</span>
+		</div>
 	</div>
 	<div class="col-12 col-lg-6">
 		<form class="input-group" action="/search.php">
