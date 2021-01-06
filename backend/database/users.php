@@ -12,7 +12,7 @@ class UsersDatabase {
 		$this->database->conn()->query(
 <<<QUERY
 	CREATE TABLE IF NOT EXISTS {$this->tableName} (
-		id VARCHAR(255) NOT NULL PRIMARY KEY,
+		id VARCHAR(50) NOT NULL PRIMARY KEY,
 		email VARCHAR(255) NOT NULL UNIQUE,
 		name VARCHAR(255) NOT NULL,
 		passwordHash VARCHAR(255) NOT NULL,

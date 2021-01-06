@@ -13,7 +13,7 @@ class ProductsDatabase {
 		$this->database->conn()->query(
 <<<QUERY
 	CREATE TABLE IF NOT EXISTS {$this->tableName} (
-		id VARCHAR(255) NOT NULL PRIMARY KEY,
+		id VARCHAR(50) NOT NULL PRIMARY KEY,
 		name VARCHAR(255) NOT NULL,
 		description TEXT NOT NULL,
 		priceInCents INT NOT NULL,
@@ -21,8 +21,8 @@ class ProductsDatabase {
 		insertDateTime INT NOT NULL,
 		quantity INT NOT NULL,
 		soldCount INT NOT NULL,
-		sellerId VARCHAR(255) NOT NULL,
-		category VARCHAR(255) NOT NULL,
+		sellerId VARCHAR(50) NOT NULL,
+		category VARCHAR(50) NOT NULL,
 		CONSTRAINT fk_seller
 		FOREIGN KEY (sellerId) REFERENCES {$this->database->sellers->tableName}(userId)
 	);
