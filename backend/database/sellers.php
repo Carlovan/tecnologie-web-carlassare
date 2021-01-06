@@ -13,7 +13,7 @@ class SellersDatabase {
 		$this->database->conn()->query(
 <<<QUERY
 	CREATE TABLE IF NOT EXISTS {$this->tableName} (
-		userId VARCHAR(255) NOT NULL PRIMARY KEY,
+		userId VARCHAR(50) NOT NULL PRIMARY KEY,
 		name VARCHAR(255) NOT NULL,
 		description TEXT NOT NULL,
 		imagePath VARCHAR(255) NOT NULL,
