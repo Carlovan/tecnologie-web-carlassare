@@ -31,9 +31,11 @@ require(FRAGS_D . 'nav.php');
 					if (is_null($p->productId)) {
 						$anchorAttributes = 'href="#" onclick="showModal();"';
 						$imagePath = '/assets/images/placeholder.png';
+						$imageAlt = 'Immagine mancante';
 					} else {
 						$anchorAttributes = 'href="/product.php?id=' . $p->productId . '"';
 						$imagePath = $p->getProduct()->imagePath;
+						$imageAlt = 'Immagine prodotto';
 					} ?>
 					<div class="card col-11 my-2">
 						<a <?= $anchorAttributes ?> class="row g-0 text-reset text-decoration-none position-relative">
