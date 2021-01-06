@@ -42,7 +42,7 @@ require(FRAGS_D . 'nav.php');
 				<div class="col-lg-3 mt-2">
 					<label for="category" class="form-label">Categoria:</label>
 					<select id="category" name="category" required class="form-select">
-						<option>Scegli categoria...</option>
+						<option value="">Scegli categoria...</option>
 						<?php foreach ($categories as $name => $path) { ?>
 							<option value="<?= $name ?>"><?= implode(' &gt; ', $path) ?></option>
 						<?php } ?>

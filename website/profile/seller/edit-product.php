@@ -47,7 +47,7 @@ require(FRAGS_D . 'nav.php');
 				<p class="text-muted">Il prodotto è stato acquistato <?= $product->soldCount ?> volte</p>
 				<label for="category" class="form-label">Categoria:</label>
 				<select id="category" name="category" required class="form-select">
-					<option>Scegli categoria...</option>
+					<option value="">Scegli categoria...</option>
 					<?php foreach ($categories as $name => $path) { ?>
 						<option value="<?= $name ?>" <?= $product->category === $name ? 'selected' : '' ?> ><?= implode(' &gt; ', $path) ?></option>
 					<?php } ?>
